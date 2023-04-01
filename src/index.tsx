@@ -1,9 +1,9 @@
 import React from 'react';
 
 // import ReactDom from 'react-dom/client'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
-import {App} from './App'
+import { App } from './modules/App';
 
 // const root = document.createElement('div');
 
@@ -15,6 +15,5 @@ import {App} from './App'
 
 // app.render(<App></App>)
 
-ReactDOM.render(<App/>, document.querySelector('#root'))
-
+ReactDOM.render(<App/>, document.querySelector('#root'));
 
