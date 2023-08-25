@@ -1,19 +1,19 @@
 import React from 'react';
 
-// import ReactDom from 'react-dom/client'
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom/client';
+// import ReactDOM from 'react-dom';
 
 import { App } from './modules/App';
 
-// const root = document.createElement('div');
+const root = document.createElement('div');
 
-// root.setAttribute('id', 'app')
+// root.setAttribute('id', 'app');
 
-// document.body.appendChild(root)
+document.body.appendChild(root);
 
-// const app = ReactDom.createRoot(root)
+const app = ReactDom.createRoot(root);
 
-// app.render(<App></App>)
+app.render(<App></App>);
 
-ReactDOM.render(<App/>, document.querySelector('#root'));
+// ReactDOM.render(<App/>, document.querySelector('#root'));
 

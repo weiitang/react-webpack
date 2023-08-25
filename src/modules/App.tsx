@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { instance } from './../http/base';
 
 import './../index.less';
 
@@ -9,12 +10,16 @@ interface AppProps {
 }
 
 export function App(props: AppProps) {
-  const fn = () => {
+  const fn = async () => {
+    // console.log('1234', c);
+    const data = await instance.get('/v1/signs/20230810154646889', { params: { ghostlogin: 'tiramisu' }});
+
+    console.log('data', data, process.env.PROXY_AUTH);
   };
 
-  fn();
-
+  useEffect(() => {
     fn();
+  }, []);
 
   return <div className="root">
     <span >Hello React</span>
