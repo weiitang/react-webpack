@@ -296,7 +296,7 @@ module.exports = {
         'no-shadow': [
             'error',
             {
-                allow: ['resolve', 'reject', 'done', 'cb', 'callback', 'error', 'err', 'e'],
+                allow: ['resolve', 'reject', 'done', 'cb', 'callback', 'error', 'err', 'e', 'item'],
                 builtinGlobals: false,
                 hoist: 'functions',
             },
