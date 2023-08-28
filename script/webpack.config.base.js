@@ -13,14 +13,14 @@ module.exports = {
   target: 'web',
   // 入口文件
   entry: {
-    main: resolve('./src/index.tsx'),
+    main: resolve('../src/index.tsx'),
   },
   // 输出
   output: {
     // 文件名称
     filename: '[name].[contenthash].js',
     // 输出目录
-    path: resolve('./dist'),
+    path: resolve('../dist'),
     // 每次编译输出的时候，清空dist目录 - 这里就不需要clean-webpack-plugin了
     clean: true,
     // 所有URL访问的前缀路径
@@ -32,7 +32,7 @@ module.exports = {
     // 设置链接
     alias: {
       // 注意resolve方法开始的查找的路径是/
-      '@': resolve('./src'),
+      '@': resolve('../src'),
     },
   },
 
