@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undefined */
 /* eslint-disable no-shadow */
 import axios from 'axios';
@@ -114,7 +115,7 @@ instance.interceptors.response.use(response => {
     && responseData.code !== undefined
     && ignoreResponse) {
     const { code, data, error } = responseData;
-    if (code === 10000) {
+    if (code === 100000) {
       return Promise.resolve(data);
     } else {
       return Promise.reject(new Error(error));
