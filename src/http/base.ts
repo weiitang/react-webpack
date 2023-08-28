@@ -5,7 +5,7 @@ import axios from 'axios';
 import { cacheAdapterEnhancer } from 'axios-extensions';
 import baseConfig from './config';
 import { getGhostUser } from './debug';
-import { isDebug, isProjectUrl, flatObject } from '../utils';
+import { isDebug, isProjectUrl, flatObject } from './utils';
 import qs from 'qs';
 // import i18n from 'i18next'
 

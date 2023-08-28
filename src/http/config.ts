@@ -28,7 +28,6 @@ const options = CONFIG[ENV];
 // 2） https://oa.m.tencent.com/an:tpptest
 // 3） http://localhost:8081 或 http://10.0.3.2:8081 （dev-server不直接取localhost，因为在客户端中可能使用ip映射）
 const baseURL = location.origin;
-console.log('process', process.env);
 // if (process.env.PLATFORM === 'app') {
 //   const rootPath = window.__public_root_path; // '/' or '/an:tpptest'
 //   baseURL += (rootPath === '/' ? '' : rootPath);
