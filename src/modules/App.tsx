@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react';
-import { instance } from './../http/base';
+import React from 'react';
 
 import './../index.less';
-
 // const root = document.querySelector('#root');
+import { TestFn } from '@src/modules/redux-test/TestFn';
+import ClassFn from '@src/modules/redux-test/ClassFn';
 
 interface AppProps {
   test?: string
 }
 
 export function App(props: AppProps) {
-  const fn = async () => {
-    // console.log('1234', c);
-    const data = await instance.get('/v1/signs/20230724161421462', { params: { ghostlogin: 'tiramisu' }});
-
-    console.log('data', data, process.env.PROXY_AUTH);
-  };
-
-  useEffect(() => {
-    fn();
-  }, []);
 
   return <div className="root">
-    <span >Hello React</span>
+    <TestFn />
+    <ClassFn />
   </div>;
 }

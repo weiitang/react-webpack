@@ -340,7 +340,7 @@ module.exports = {
         'no-useless-call': 'error',
         'no-useless-computed-key': 'error',
         'no-useless-concat': 'error',
-        'no-useless-constructor': 'error',
+        'no-useless-constructor': 'off',
         'no-useless-escape': 'off',
         'no-useless-rename': 'error',
         'no-useless-return': 'off',

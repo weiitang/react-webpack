@@ -9,6 +9,11 @@ const resolve = (targetPath) => {
   return path.resolve(__dirname, targetPath);
 };
 
+// console.log('----------', path.resolve(__dirname, '../src'), path.resolve(__dirname), path.resolve(process.cwd()));
+// /Users/tangwei/Documents/htdocs/react-webpack/src
+// /Users/tangwei/Documents/htdocs/react-webpack/script
+// /Users/tangwei/Documents/htdocs/react-webpack
+
 module.exports = {
   target: 'web',
   // 入口文件
@@ -32,7 +37,7 @@ module.exports = {
     // 设置链接
     alias: {
       // 注意resolve方法开始的查找的路径是/
-      '@': resolve('../src'),
+      '@src': [path.resolve(process.cwd(), 'src')],
     },
   },
 
