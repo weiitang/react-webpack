@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TestFn } from '@src/modules/redux-test/TestFn';
 import ClassFn  from '@src/modules/redux-test/ClassFn';
+import { InputFn } from '@src/modules/input';
 
 import './../index.less';
 // import router from './../router';
@@ -17,6 +18,7 @@ export function App(props: AppProps) {
     <Route path="/" element={<TestFn />}></Route>
     <Route path="test" element={<TestFn />}></Route>
     <Route path="test1" element={<ClassFn />}></Route>
+    <Route path="input" element={<InputFn />}></Route>
   </Routes>
   </BrowserRouter>;
 }
