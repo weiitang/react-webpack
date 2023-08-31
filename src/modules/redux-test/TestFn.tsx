@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import { instance } from './../http/base';
 
 // const root = document.querySelector('#root');
@@ -29,5 +30,8 @@ export function TestFn(props: AppProps) {
   return <div className="root">
     <span onClick={modelOnclick}>点我</span>
     <span>{state.global.pendingCount}</span>
+    <Link to="/test1">TO</Link>
   </div>;
 }
+
+export default TestFn;

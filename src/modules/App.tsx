@@ -1,9 +1,10 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { TestFn } from '@src/modules/redux-test/TestFn';
+import ClassFn  from '@src/modules/redux-test/ClassFn';
 
 import './../index.less';
-// const root = document.querySelector('#root');
-import { TestFn } from '@src/modules/redux-test/TestFn';
-import ClassFn from '@src/modules/redux-test/ClassFn';
+// import router from './../router';
 
 interface AppProps {
   test?: string
@@ -11,8 +12,11 @@ interface AppProps {
 
 export function App(props: AppProps) {
 
-  return <div className="root">
-    <TestFn />
-    <ClassFn />
-  </div>;
+  return <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<TestFn />}></Route>
+    <Route path="test" element={<TestFn />}></Route>
+    <Route path="test1" element={<ClassFn />}></Route>
+  </Routes>
+  </BrowserRouter>;
 }
