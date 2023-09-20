@@ -1,0 +1,33 @@
+.inputTest {
+  .header {
+    color: red;
+  }
+}
+
+.inputTestCss {
+  & .header {
+    color: purple;
+  }
+}
+
+:local {
+  .inputTestCss {
+    & .header {
+      color: red;
+    }
+  }
+
+  .header {
+    color: pink;
+  }
+}
+
+.header {
+  color: green;
+}
+
+:global {
+  .header {
+    color: #ccc;
+  }
+}

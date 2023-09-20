@@ -2,6 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
+import styles from './index.less';
+// import './index.less';
+
 interface AppProps {
   test?: string
 }
@@ -25,11 +28,23 @@ export function InputFn(props: AppProps) {
         'type': 'text'
         });
 
-        console.log('eeeeetky', tkyApi);
+        console.log('eeeeetky', tkyApi, e);
     };
   };
 
-  return <div className="root">
+  return <>
+    <div className={styles.inputTest}>
     <input type="file" onChange={inputOnchange}/>
-  </div>;
+
+    <span className="header">文件</span>
+    <span className={styles.header}>文件</span>
+  </div>
+
+  <div className={styles.inputTestCss}>
+    <span className={styles.header}>less</span>
+  </div>
+
+  <span className="header">global解决css-module嵌套问题</span>
+
+  </>;
 }

@@ -3,6 +3,7 @@
 const { merge } = require('webpack-merge');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
+// const autoprefixer = require('autoprefixer');
 
 const {
   getBrowserAuthCookies,
@@ -231,12 +232,29 @@ module.exports = merge(webpackConfigBase, {
     //   ]
     // },
     {
-      test: /\.(css|less)$/,
+      test: /\.css$/,
+      include: /node_modules/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader'
+        }
+      ]
+    },
+    {
+      test: /\.less$/,
       use: [
         // 生产环境下直接分离打包css
         isProd ? MiniCssExtractPlugin.loader : 'style-loader',
         {
           loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            // 开启css-modules
+            modules: {
+              localIdentName: '[name]-[local]-[hash:base64:8]'
+            }
+          }
         },
         'less-loader',
         {
@@ -250,6 +268,38 @@ module.exports = merge(webpackConfigBase, {
         },
       ],
     },
+    // {
+    //   test: /\.less$/,
+    //   exclude: /node_modules/,
+    //   use: [
+    //     'css-hot-loader',
+    //     MiniCssExtractPlugin.loader,
+    //     {
+    //       loader: 'css-loader',
+    //       options: {
+    //         sourceMap: true,
+    //         modules: {
+    //           localIdentName: '[name]-[local]-[hash:base64:8]'
+    //         }
+    //       }
+    //     }, {
+    //       loader: 'postcss-loader',
+    //       options: {
+    //         sourceMap: true,
+    //         plugins: [
+    //           autoprefixer({
+    //             overrideBrowserslist: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 9', 'iOS >= 8', 'Android >= 4'],
+    //           })
+    //         ]
+    //       }
+    //     }, {
+    //       loader: 'less-loader',
+    //       options: {
+    //         sourceMap: true
+    //       }
+    //     }
+    //   ]
+    // }
   ]
   // rules
 }

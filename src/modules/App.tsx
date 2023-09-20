@@ -5,6 +5,7 @@ import ClassFn  from '@src/modules/redux-test/ClassFn';
 import { InputFn } from '@src/modules/input';
 
 import './../index.less';
+// import * as styles from './../index.less';
 // import router from './../router';
 
 interface AppProps {
