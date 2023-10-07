@@ -311,7 +311,7 @@ module.exports = {
         'no-trailing-spaces': 'error',
         'no-undef': 'off',
         'no-undef-init': 'error',
-        'no-undefined': 'error',
+        'no-undefined': 'off',
         'no-underscore-dangle': 'off',
         'no-unexpected-multiline': 'error',
         'no-unmodified-loop-condition': 'error',
