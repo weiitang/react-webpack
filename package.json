@@ -5,13 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "tsc": "tsc",
+    "tsc": "tsc --pretty --noEmit",
+    "tsc:app": "tsc model/index.ts --declaration --emitDeclarationOnly",
     "dev": "cross-env NODE_ENV=dev webpack serve --config script/webpack.config.dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .tsx,.ts,.js --fix ./src"
-  },
-  "lint-staged": {
-    "./src/**/*.{ts,tsx}": "eslint"
   },
   "author": "weiitang",
   "license": "ISC",
