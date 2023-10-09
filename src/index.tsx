@@ -7,6 +7,9 @@ import ReactDom from 'react-dom/client';
 import { store } from '../model/store';
 
 import { App } from './modules/App';
+import '@src/lib/reset.less';
+import '@src/lib/reset-td.less';
+import 'tdesign-react/es/style/index.css';
 
 const root = document.createElement('div');
 
