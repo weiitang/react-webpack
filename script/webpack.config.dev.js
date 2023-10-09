@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 // merge，合并两个或多个webpack配置文件
 const { merge } = require('webpack-merge');
@@ -256,7 +257,6 @@ module.exports = merge(webpackConfigBase, {
             }
           }
         },
-        'less-loader',
         {
           loader: 'postcss-loader',
           options: {
@@ -266,6 +266,38 @@ module.exports = merge(webpackConfigBase, {
             },
           },
         },
+        // 将less-loader写在postcss-loader后面  less文件中{}注释会报错
+        'less-loader',
+        // {
+        //   loader: path.resolve(__dirname, './loaders/replace-content-loader.js'),
+        //   options: {
+        //     replace(content) {
+        //       return content
+        //         .replace(/composes:(.*?) from .*?['"](.*?)['"];/gi, (_, $1, $2) => {
+        //           const [path] = $2.split('?');
+        //           const ext = path.split('.').pop();
+        //           if (less && ext === 'less') {
+        //             return `composes: ${$1.trim()} from 'less-loader!${$2}';`;
+        //           }
+        //           if (sass && (ext === 'sass' || ext === 'scss')) {
+        //             return `composes: ${$1.trim()} from 'sass-loader!${$2}';`;
+        //           }
+        //           return _;
+        //         })
+        //         .replace(/:import\(["'](.*?)["']\)/gi, (_, $1) => {
+        //           const [path] = $1.split('?');
+        //           const ext = path.split('.').pop();
+        //           if (less && ext === 'less') {
+        //             return `:import('less-loader!${$1}')`;
+        //           }
+        //           if (sass && (ext === 'sass' || ext === 'scss')) {
+        //             return `:import('sass-loader!${$1}')`;
+        //           }
+        //           return _;
+        //         });
+        //     },
+        //   },
+        // }
       ],
     },
     // {
