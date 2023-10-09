@@ -1,0 +1,106 @@
+@import './variables.less';
+
+// @常规字体 text-*
+// @粗体 text-*-bold
+
+.text(@fontSize; @fontWeight; @lineHeight;) {
+  font-size: @fontSize;
+  font-weight: @fontWeight;
+  line-height: @lineHeight;
+}
+// 一级文字/常规/36px/行高44px
+.text-1() {
+  .text(
+    @font-size1,
+    @font-normal,
+    @font-line-height1
+  )
+}
+
+.text-1-bold() {
+  .text(
+    @font-size1,
+    @font-bold,
+    @font-line-height1
+  )
+}
+// 二级文字/常规/20px/行高28px
+.text-2() {
+  .text(
+    @font-size2,
+    @font-normal,
+    @font-line-height2
+  );
+}
+
+.text-2-bold() {
+  .text(
+    @font-size2,
+    @font-bold,
+    @font-line-height2
+  );
+}
+// 三级文字/常规/16px/行高24px
+.text-3() {
+  .text(
+    @font-size3,
+    @font-normal,
+    @font-line-height3
+  );
+}
+
+.text-3-bold() {
+  .text(
+    @font-size3,
+    @font-bold,
+    @font-line-height3
+  );
+}
+// 四级文字/常规/14px/行高22px
+.text-4() {
+  .text(
+    @font-size4,
+    @font-normal,
+    @font-line-height4
+  );
+}
+
+.text-4-bold() {
+  .text(
+    @font-size4,
+    @font-bold,
+    @font-line-height4
+  );
+}
+// 五级文字/常规/12px/行高20px
+.text-5() {
+  .text(
+    @font-size5,
+    @font-normal,
+    @font-line-height5
+  );
+}
+
+.text-5-bold() {
+  .text(
+    @font-size5,
+    @font-bold,
+    @font-line-height5
+  );
+}
+// 六级文字/常规/10px/行高16px (app)
+.text-6() {
+  .text(
+    @font-size6,
+    @font-normal,
+    @font-line-height6
+  );
+}
+
+.text-6-bold() {
+  .text(
+    @font-size6,
+    @font-bold,
+    @font-line-height6
+  );
+}
