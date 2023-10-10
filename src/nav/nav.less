@@ -1,0 +1,115 @@
+@import '@src/styles/variables.less';
+
+.nav {
+  background-color: @color-blue-gray12;
+  // height: 64px;
+  display: flex;
+  align-items: center;
+  min-width: @screen-min;
+
+  :global {
+    .t-menu--dark.t-head-menu {
+      background-color: @color-blue-gray12;
+    }
+
+    .t-menu--dark.t-head-menu .t-menu__popup {
+      background-color: @color-blue-gray12;
+      margin-top: @spacer8;
+    }
+
+    .t-menu--dark.t-head-menu .t-menu__popup .t-menu__item {
+      height: 40px;
+      line-height: 40px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.navLogo {
+  width: 152px;
+  height: 28px;
+  line-height: 28px;
+  margin-left: @spacer24;
+  font-size: @font-size2;
+  font-weight: 500;
+  color: @color-white1;
+  text-decoration: none;
+}
+
+.navLeft {
+  display: contents;
+
+  :global {
+    .t-menu--dark .t-menu__item:hover:not(.t-is-active):not(.t-is-opened):not(.t-is-disabled) {
+      color: rgba(255, 255, 255, .55);
+      background-color: @color-blue-gray10;
+    }
+  }
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  padding-right: @spacer32;
+  list-style: none;
+
+  & > li {
+    margin-left: @spacer32;
+    white-space: nowrap;
+  }
+
+  .avatar {
+    margin-left: @spacer24;
+  }
+
+  :global {
+    .t-menu--dark .t-menu__item:hover:not(.t-is-active):not(.t-is-opened):not(.t-is-disabled) {
+      color: rgba(255, 255, 255, .55);
+      background-color: rgba(255, 255, 255, 10%);
+    }
+  }
+}
+
+
+// div.settingPopup {
+//   :global {
+//     .t-popup__content {
+//       background-color: @color-blue-gray12;
+//       border-color: @color-blue-gray12;
+//       box-shadow: @shadow-basic;
+//       margin: 0;
+//       padding: 8px;
+//     }
+
+//     // .t-popup__content {
+//     //   /* stylelint-disable-next-line declaration-no-important */
+//     //   margin-top: 25px !important;
+//     // }
+//   }
+
+// }
+
+// .settingWrapper {
+//   list-style: none;
+//   text-align: left;
+//   color: #fff;
+
+//   li {
+//     text-align: left;
+//     color: rgba(255, 255, 255, .55);
+//     border-radius: 3px;
+
+//     padding: 0 16px;
+//     // min-width: 90px;
+//     height: 40px;
+//     line-height: 40px;
+//     justify-content: center;
+//     transition: all .28s cubic-bezier(.645, .045, .355, 1);
+//     cursor: pointer;
+
+//     &:hover {
+//       background-color: rgba(255, 255, 255, 10%);
+//     }
+//   }
+// }
