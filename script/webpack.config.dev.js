@@ -12,9 +12,7 @@ const {
   hasBrowserAuthCookies,
 } = require('./cookie');
 
-const {
-  createRules,
-} = require('./config');
+const { createRules } = require('./config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -28,7 +26,6 @@ const rootDir = path.resolve(__dirname);
 const webpackConfigBase = require('./webpack.config.base');
 // 可以从 .env 文件中自动加载环境变量到 process.env 对象
 dotenv.config();
-
 
 const {
   PLATFORM = 'pc',
@@ -89,7 +86,11 @@ if (PROXY) {
     const isMatchVisitedTarget = authItems.some((item) => item === target);
 
     // 提前先拉取一次cookie
-    if (isMatchVisitedTarget && !PROXY_AUTH_COOKIE && !hasBrowserAuthCookies(options)) {
+    if (
+      isMatchVisitedTarget &&
+      !PROXY_AUTH_COOKIE &&
+      !hasBrowserAuthCookies(options)
+    ) {
       fetchBrowserAuthCookies(options);
     }
 
@@ -115,7 +116,9 @@ const port = PORT || 3000;
 const destPath = path.resolve(DIST_DIR, PLATFORM, DEST_PATH);
 const baseUri = DEST_PATH ? `/${DEST_PATH}` : '/';
 const publicPath = DEST_PATH ? `${baseUri}/` : '/';
-const previewSourceDir = IS_APP ? path.dirname(PREVIEW_FILE) : path.resolve(__dirname, 'platforms', PLATFORM);
+const previewSourceDir = IS_APP
+  ? path.dirname(PREVIEW_FILE)
+  : path.resolve(__dirname, 'platforms', PLATFORM);
 const entry = path.resolve(previewSourceDir, IS_APP ? 'index.ts' : 'index.js');
 const template = path.resolve(previewSourceDir, 'index.html');
 const directory = DEST_PATH ? path.resolve(DIST_DIR, PLATFORM) : destPath; // 当存在destPath时，我们要以顶层目录作为服务根目录，这样才能通过destPath访问到应用
@@ -195,9 +198,8 @@ module.exports = merge(webpackConfigBase, {
       ? {
           'Set-Cookie': `__env=${BACKEND_ENV}; path=/`,
         }
-      // eslint-disable-next-line no-undefined
-      : undefined,
-
+      : // eslint-disable-next-line no-undefined
+        undefined,
   },
   plugins: [
     // new webpack.ProvidePlugin({
@@ -205,136 +207,136 @@ module.exports = merge(webpackConfigBase, {
     //   // Buffer: ['buffer', 'Buffer'],
     // }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html')
+      template: path.resolve(__dirname, '../public/index.html'),
     }),
 
     new MiniCssExtractPlugin({
-    // 输出的每个css文件名称
-    filename: isProd ? '[name].[contenthash].css' : '[name].css',
-    // 非入口的chunk文件名 - 通过import()加载异步组件中样式
-    chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
+      // 输出的每个css文件名称
+      filename: isProd ? '[name].[contenthash].css' : '[name].css',
+      // 非入口的chunk文件名 - 通过import()加载异步组件中样式
+      chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
     }),
     new webpack.DefinePlugin({
       'process.env': {
         ...generateEnvConsts(),
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        'PLATFORM': '"pc"'
-      }
-    })
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        PLATFORM: '"pc"',
+      },
+    }),
   ],
 
   module: {
-  rules: [
-    // {
-    //   test: /\.(ts|tsx)$/,
-    //   exclude: /node_modules/,
-    //   use: [
-    //     {loader: "ts-loader"},
-    //   ]
-    // },
-    {
-      test: /\.css$/,
-      include: /node_modules/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader'
-        }
-      ]
-    },
-    {
-      test: /\.less$/,
-      use: [
-        // 生产环境下直接分离打包css
-        isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true,
-            // 开启css-modules
-            modules: {
-              localIdentName: '[name]-[local]-[hash:base64:8]'
-            }
-          }
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              // 浏览器前缀自动补全
-              plugins: ['autoprefixer'],
+    rules: [
+      // {
+      //   test: /\.(ts|tsx)$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {loader: "ts-loader"},
+      //   ]
+      // },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          // 生产环境下直接分离打包css
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              // 开启css-modules
+              modules: {
+                localIdentName: '[name]-[local]-[hash:base64:8]',
+              },
             },
           },
-        },
-        // 将less-loader写在postcss-loader后面  less文件中{}注释会报错
-        'less-loader',
-        // {
-        //   loader: path.resolve(__dirname, './loaders/replace-content-loader.js'),
-        //   options: {
-        //     replace(content) {
-        //       return content
-        //         .replace(/composes:(.*?) from .*?['"](.*?)['"];/gi, (_, $1, $2) => {
-        //           const [path] = $2.split('?');
-        //           const ext = path.split('.').pop();
-        //           if (less && ext === 'less') {
-        //             return `composes: ${$1.trim()} from 'less-loader!${$2}';`;
-        //           }
-        //           if (sass && (ext === 'sass' || ext === 'scss')) {
-        //             return `composes: ${$1.trim()} from 'sass-loader!${$2}';`;
-        //           }
-        //           return _;
-        //         })
-        //         .replace(/:import\(["'](.*?)["']\)/gi, (_, $1) => {
-        //           const [path] = $1.split('?');
-        //           const ext = path.split('.').pop();
-        //           if (less && ext === 'less') {
-        //             return `:import('less-loader!${$1}')`;
-        //           }
-        //           if (sass && (ext === 'sass' || ext === 'scss')) {
-        //             return `:import('sass-loader!${$1}')`;
-        //           }
-        //           return _;
-        //         });
-        //     },
-        //   },
-        // }
-      ],
-    },
-    // {
-    //   test: /\.less$/,
-    //   exclude: /node_modules/,
-    //   use: [
-    //     'css-hot-loader',
-    //     MiniCssExtractPlugin.loader,
-    //     {
-    //       loader: 'css-loader',
-    //       options: {
-    //         sourceMap: true,
-    //         modules: {
-    //           localIdentName: '[name]-[local]-[hash:base64:8]'
-    //         }
-    //       }
-    //     }, {
-    //       loader: 'postcss-loader',
-    //       options: {
-    //         sourceMap: true,
-    //         plugins: [
-    //           autoprefixer({
-    //             overrideBrowserslist: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 9', 'iOS >= 8', 'Android >= 4'],
-    //           })
-    //         ]
-    //       }
-    //     }, {
-    //       loader: 'less-loader',
-    //       options: {
-    //         sourceMap: true
-    //       }
-    //     }
-    //   ]
-    // }
-  ]
-  // rules
-}
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                // 浏览器前缀自动补全
+                plugins: ['autoprefixer'],
+              },
+            },
+          },
+          // 将less-loader写在postcss-loader后面  less文件中{}注释会报错
+          'less-loader',
+          // {
+          //   loader: path.resolve(__dirname, './loaders/replace-content-loader.js'),
+          //   options: {
+          //     replace(content) {
+          //       return content
+          //         .replace(/composes:(.*?) from .*?['"](.*?)['"];/gi, (_, $1, $2) => {
+          //           const [path] = $2.split('?');
+          //           const ext = path.split('.').pop();
+          //           if (less && ext === 'less') {
+          //             return `composes: ${$1.trim()} from 'less-loader!${$2}';`;
+          //           }
+          //           if (sass && (ext === 'sass' || ext === 'scss')) {
+          //             return `composes: ${$1.trim()} from 'sass-loader!${$2}';`;
+          //           }
+          //           return _;
+          //         })
+          //         .replace(/:import\(["'](.*?)["']\)/gi, (_, $1) => {
+          //           const [path] = $1.split('?');
+          //           const ext = path.split('.').pop();
+          //           if (less && ext === 'less') {
+          //             return `:import('less-loader!${$1}')`;
+          //           }
+          //           if (sass && (ext === 'sass' || ext === 'scss')) {
+          //             return `:import('sass-loader!${$1}')`;
+          //           }
+          //           return _;
+          //         });
+          //     },
+          //   },
+          // }
+        ],
+      },
+      // {
+      //   test: /\.less$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     'css-hot-loader',
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         sourceMap: true,
+      //         modules: {
+      //           localIdentName: '[name]-[local]-[hash:base64:8]'
+      //         }
+      //       }
+      //     }, {
+      //       loader: 'postcss-loader',
+      //       options: {
+      //         sourceMap: true,
+      //         plugins: [
+      //           autoprefixer({
+      //             overrideBrowserslist: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 9', 'iOS >= 8', 'Android >= 4'],
+      //           })
+      //         ]
+      //       }
+      //     }, {
+      //       loader: 'less-loader',
+      //       options: {
+      //         sourceMap: true
+      //       }
+      //     }
+      //   ]
+      // }
+    ],
+    // rules
+  },
 });
 
 function generateEnvConsts() {

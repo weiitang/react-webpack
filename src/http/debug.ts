@@ -6,7 +6,6 @@ import qs from 'qs';
 
 const parsed = qs.parse(location.search, { ignoreQueryPrefix: true });
 
-
 /**
  * 获取ghostlogin用户
  * @return {String}

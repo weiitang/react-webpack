@@ -6,7 +6,6 @@ export function isDebug() {
   return ['development', 'test'].indexOf(process.env.NODE_ENV as string) !== -1;
 }
 
-
 export const uuid = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
     .replace(/[xy]/g, (c) => {

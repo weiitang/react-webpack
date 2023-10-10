@@ -11,10 +11,16 @@ export function toUTC(
     isEnd?: boolean;
     unit?: OpUnitType;
     formatStr?: string;
-  } = {},
+  } = {}
 ): string {
-  const { isEnd = false, unit = 'd', formatStr = 'YYYY-MM-DDTHH:mm:ss[Z]' } = params;
-  const localDate = isEnd ? dayjs(date).endOf(unit).format() : dayjs(date).format();
+  const {
+    isEnd = false,
+    unit = 'd',
+    formatStr = 'YYYY-MM-DDTHH:mm:ss[Z]',
+  } = params;
+  const localDate = isEnd
+    ? dayjs(date).endOf(unit).format()
+    : dayjs(date).format();
   return dayjs.utc(localDate).format(formatStr);
 }
 
@@ -23,11 +29,12 @@ export function toLocal(
   date: string,
   params: {
     format?: string;
-  } = {},
+  } = {}
 ): string {
   const { format = 'YYYY-MM-DD' } = params;
   if (typeof date !== 'string') return '';
-  if (format?.includes('hh:mm')) console.warn('默认采用24小时制展示格式', format);
+  if (format?.includes('hh:mm'))
+    console.warn('默认采用24小时制展示格式', format);
   return dayjs.utc(date).local().format(format);
 }
 
@@ -48,4 +55,3 @@ export function UTCZero(): string {
 export function isUtcFormat(value) {
   return value && /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/.test(value);
 }
-

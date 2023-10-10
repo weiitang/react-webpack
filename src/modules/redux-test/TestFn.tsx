@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Dispatch, RootState } from '../../../model';
 
 interface AppProps {
-  test?: string
+  test?: string;
 }
 
 export function TestFn(props: AppProps) {
@@ -27,11 +27,13 @@ export function TestFn(props: AppProps) {
     dispatch.global.getPendingCountReq(1);
   };
 
-  return <div className="root">
-    <span onClick={modelOnclick}>点我</span>
-    <span>{state.global.pendingCount}</span>
-    <Link to="/test1">TO</Link>
-  </div>;
+  return (
+    <div className="root">
+      <span onClick={modelOnclick}>点我</span>
+      <span>{state.global.pendingCount}</span>
+      <Link to="/test1">TO</Link>
+    </div>
+  );
 }
 
 export default TestFn;

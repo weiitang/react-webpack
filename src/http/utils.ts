@@ -7,9 +7,9 @@ import qs from 'qs';
 // import i18next from 'i18next';
 
 export const CURRENCY_SYMBOL_MAP = {
-  'USD': '$',
-  'CNY': '¥',
-  'HKD': '$',
+  USD: '$',
+  CNY: '¥',
+  HKD: '$',
   // 下面的暂不开放
   // 'KRW': '₩', // 韩元
   // 'JPY': '¥', // 日元
@@ -86,14 +86,12 @@ export function toBaseURL(url, baseAppStatic = false) {
       }
     } else {
       parsed = {
-        ghostlogin: user
+        ghostlogin: user,
       };
     }
 
-
     url = _url[0] + '?' + qs.stringify(parsed);
   }
-
 
   if (isHttpURL(url)) {
     return url;
@@ -148,8 +146,12 @@ export function flatObject(obj, determine?) {
     if (Array.isArray(input)) {
       input.forEach((item, i) => flat(item, `${path}[${i}]`, result));
       return result;
-    }
-    else if (input && typeof input === 'object' && !isFile(input) && !isDate(input)) {
+    } else if (
+      input &&
+      typeof input === 'object' &&
+      !isFile(input) &&
+      !isDate(input)
+    ) {
       if (typeof determine === 'function' && !determine(input)) {
         result[path] = input;
         return result;
@@ -161,8 +163,7 @@ export function flatObject(obj, determine?) {
         flat(value, !path ? key : `${path}[${key}]`, result);
       });
       return result;
-    }
-    else {
+    } else {
       result[path] = input;
       return result;
     }
@@ -173,20 +174,25 @@ export function flatObject(obj, determine?) {
   return flat(obj);
 }
 
-export const path2Params = str => {
+export const path2Params = (str) => {
   if (isObject(str)) return str;
   if (str.indexOf('?') === 0) {
     str = str.slice(1);
   }
   const obj = {};
-  str.split('&').forEach(item => {
+  str.split('&').forEach((item) => {
     const [key, val] = item.split('=');
     !isEmpty(key) && (obj[key] = decodeURIComponent(val));
   });
   return obj;
 };
 
-export const params2Path = obj => Object.entries(obj).reduce((acc, [key, val], index, arr) => acc += `${key}=${val}${index !== arr.length - 1 ? '&' : ''}`, '?');
+export const params2Path = (obj) =>
+  Object.entries(obj).reduce(
+    (acc, [key, val], index, arr) =>
+      (acc += `${key}=${val}${index !== arr.length - 1 ? '&' : ''}`),
+    '?'
+  );
 
 export const generateSearchParams = (location, newParams) => {
   return {
@@ -194,7 +200,7 @@ export const generateSearchParams = (location, newParams) => {
     search: params2Path({
       ...path2Params(location.search),
       ...newParams,
-    })
+    }),
   };
 };
 
@@ -204,18 +210,19 @@ export const generateSearchParams = (location, newParams) => {
  *    replace
  *  }
  */
-export const generateHistoryPurePush = history => (newParams, { replace }) => {
-  const newSearch = params2Path({
-    ...path2Params(replace ? {} : location.search),
-    ...path2Params(newParams)
-  });
-  if (history.location.search === newSearch) return;
-  history.push({
-    ...history.location,
-    search: newSearch
-  });
-};
-
+export const generateHistoryPurePush =
+  (history) =>
+  (newParams, { replace }) => {
+    const newSearch = params2Path({
+      ...path2Params(replace ? {} : location.search),
+      ...path2Params(newParams),
+    });
+    if (history.location.search === newSearch) return;
+    history.push({
+      ...history.location,
+      search: newSearch,
+    });
+  };
 
 /**
  * 获取货币符号
@@ -227,12 +234,21 @@ export function getCurrencySymbol(currency) {
   return CURRENCY_SYMBOL_MAP[currency] || '';
 }
 
-
 /**
  * 过滤行业
  */
 export function professionsFilter(professions) {
-  const filterProfessionNameList = ['O2O', 'Fintech', 'Healthcare', 'Education', 'Electric Vehicle', 'Entertainment', 'E-commerce', 'Logistics', 'Enterprise Services',];
+  const filterProfessionNameList = [
+    'O2O',
+    'Fintech',
+    'Healthcare',
+    'Education',
+    'Electric Vehicle',
+    'Entertainment',
+    'E-commerce',
+    'Logistics',
+    'Enterprise Services',
+  ];
   const filterProfessionIdList = [
     '04E47310D401B8E32346B9FBB7F0EB8D',
     '1203C629EDC140AA6DEF67121D5BA05E',
@@ -245,8 +261,11 @@ export function professionsFilter(professions) {
     'FA66FF13F749DA38B6095730557794E1',
   ];
 
-  return professions.filter(item => {
-    return filterProfessionNameList.includes(item.profession_name_en) || filterProfessionIdList.includes(item.profession_id);
+  return professions.filter((item) => {
+    return (
+      filterProfessionNameList.includes(item.profession_name_en) ||
+      filterProfessionIdList.includes(item.profession_id)
+    );
   });
 }
 
@@ -259,7 +278,7 @@ export function professionsFilter(professions) {
 export function uniqueObjListByKey(list, key) {
   const hash = {};
   const newList = list.reduce((item, next) => {
-    hash[next[key]] ? '' : hash[next[key]] = true && item.push(next);
+    hash[next[key]] ? '' : (hash[next[key]] = true && item.push(next));
     return item;
   }, []);
   return newList;
@@ -269,7 +288,7 @@ export function uniqueObjListByKey(list, key) {
  * 将props的页数转为接口需要参数
  * @param {*} pagination
  */
-export const translatePagination2Params = pagination => {
+export const translatePagination2Params = (pagination) => {
   const { currentPage, pageSize } = pagination;
   return {
     page: currentPage,
@@ -288,8 +307,7 @@ export function parseSearchQuery(search) {
   const tryGet = (v) => {
     try {
       return JSON.parse(v);
-    }
-    catch (e) {
+    } catch (e) {
       return v;
     }
   };

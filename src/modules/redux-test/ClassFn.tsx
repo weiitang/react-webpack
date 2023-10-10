@@ -8,7 +8,7 @@ import { Dispatch, RootState } from '../../../model';
 interface ClassFnPropsType {
   test: string;
   pendingCount: number;
-  getPendingCountReq: () => {}
+  getPendingCountReq: () => {};
 }
 
 class ClassFn extends Component<ClassFnPropsType> {
@@ -23,13 +23,15 @@ class ClassFn extends Component<ClassFnPropsType> {
     console.log('test', test, pendingCount);
   };
 
-   render() {
+  render() {
     const { pendingCount } = this.props;
 
-    return <div className="root">
-      <span onClick={this.modelOnclick}>点我</span>
-      <span>{pendingCount}</span>
-    </div>;
+    return (
+      <div className="root">
+        <span onClick={this.modelOnclick}>点我</span>
+        <span>{pendingCount}</span>
+      </div>
+    );
   }
 }
 

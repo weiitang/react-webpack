@@ -19,7 +19,10 @@ document.body.appendChild(root);
 
 const app = ReactDom.createRoot(root);
 
-app.render(<Provider store={store}><App></App></Provider>);
+app.render(
+  <Provider store={store}>
+    <App></App>
+  </Provider>
+);
 
 // ReactDOM.render(<App/>, document.querySelector('#root'));
-

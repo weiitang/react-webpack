@@ -1,27 +1,26 @@
 const CONFIG = {
   // 开发环境
   // 开发环境自动代理到 .env 中的配置，这个配置方便扩展和打包
-  'development': {
-    'weixinAppID': 'wx9a6ab96ecad40d61', // 应用id，非公众号id
+  development: {
+    weixinAppID: 'wx9a6ab96ecad40d61', // 应用id，非公众号id
   },
   // 测试环境
-  'test': {
-    'weixinAppID': 'wx9a6ab96ecad40d61',
+  test: {
+    weixinAppID: 'wx9a6ab96ecad40d61',
   },
   // 预发布环境
   // 暂无预发布环境
-  'pre': {
-    'weixinAppID': 'wxaa3073648ea75622',
+  pre: {
+    weixinAppID: 'wxaa3073648ea75622',
   },
   // 生产环境
-  'production': {
-    'weixinAppID': 'wxaa3073648ea75622',
-  }
+  production: {
+    weixinAppID: 'wxaa3073648ea75622',
+  },
 };
 
 const ENV = process.env.NODE_ENV || 'development';
 const options = CONFIG[ENV];
-
 
 // 基准路径（包括接口、静态资源的根路径）：
 // 1） https://tpptest.oa.com
@@ -35,7 +34,7 @@ const baseURL = location.origin;
 
 const RESULT = {
   ...options,
-  baseURL
+  baseURL,
 };
 
 export default RESULT;

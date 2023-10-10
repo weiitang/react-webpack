@@ -20,7 +20,10 @@ const instance = axios.create({
   baseURL: baseConfig.baseURL + '/api/',
   timeout: 60 * 1000,
   headers: customHeaders,
-  adapter: cacheAdapterEnhancer(axios.defaults.adapter as any, { enabledByDefault: false, cacheFlag: 'useCache' })
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter as any, {
+    enabledByDefault: false,
+    cacheFlag: 'useCache',
+  }),
 });
 
 /**
@@ -40,12 +43,19 @@ instance.interceptors.request.use((config: any) => {
   // create时可能还没配置axiosOptions，所以这里动态设置
   config.headers = Object.assign(config.headers, axiosOptions.headers);
 
-
   // 开发测试调试用
-  if (isDebug() && isProjectUrl(config.url) && config.url.indexOf('ghostlogin=') === -1) {
-    config.params = Object.assign({}, {
-      ghostlogin: getGhostUser()
-    }, config.params);
+  if (
+    isDebug() &&
+    isProjectUrl(config.url) &&
+    config.url.indexOf('ghostlogin=') === -1
+  ) {
+    config.params = Object.assign(
+      {},
+      {
+        ghostlogin: getGhostUser(),
+      },
+      config.params
+    );
   }
 
   // 后台不支持PUT/PATCH/DELETE请求，需要转义
@@ -68,10 +78,10 @@ instance.interceptors.request.use((config: any) => {
     // 自动将带File对象的data参数转换为FormData对象
     if (!(data instanceof FormData)) {
       const flatObj = flatObject(data);
-      const hasFile = Object.values(flatObj).find(v => v instanceof File);
+      const hasFile = Object.values(flatObj).find((v) => v instanceof File);
       if (hasFile) {
         const formData = new FormData();
-        Object.keys(flatObj).forEach(key => {
+        Object.keys(flatObj).forEach((key) => {
           const value = flatObj[key];
 
           // FormData形式传入null会变成字符串
@@ -84,7 +94,6 @@ instance.interceptors.request.use((config: any) => {
         config.data = data;
       }
     }
-
 
     if (data instanceof FormData && contentType.indexOf(formType) !== -1) {
       config.headers.post['Content-Type'] = 'multipart/form-data';
@@ -99,38 +108,39 @@ instance.interceptors.request.use((config: any) => {
   return config;
 });
 
-instance.interceptors.response.use(response => {
-  // 业务API响应，非10000都当做异常; 存在code即认为是业务API响应格式，保留__ignore参数忽略次处理逻辑
-  // 其他响应，直接返回
-  //
-  // 存在_ignore参数，则不处理响应格式
-  // 适用于自定义JSON等一些场景，例如App version.json
-  console.log('use', response);
-  const params = response.config.params;
-  const ignoreResponse = !params || params.__ignore === undefined;
-  const responseData = response.data;
+instance.interceptors.response.use(
+  (response) => {
+    // 业务API响应，非10000都当做异常; 存在code即认为是业务API响应格式，保留__ignore参数忽略次处理逻辑
+    // 其他响应，直接返回
+    //
+    // 存在_ignore参数，则不处理响应格式
+    // 适用于自定义JSON等一些场景，例如App version.json
+    console.log('use', response);
+    const params = response.config.params;
+    const ignoreResponse = !params || params.__ignore === undefined;
+    const responseData = response.data;
 
-  if (typeof responseData === 'object'
-    && responseData !== null
-    && responseData.code !== undefined
-    && ignoreResponse) {
-    const { code, data, error } = responseData;
-    if (code === 100000) {
-      return Promise.resolve(data);
+    if (
+      typeof responseData === 'object' &&
+      responseData !== null &&
+      responseData.code !== undefined &&
+      ignoreResponse
+    ) {
+      const { code, data, error } = responseData;
+      if (code === 100000) {
+        return Promise.resolve(data);
+      } else {
+        return Promise.reject(new Error(error));
+      }
     } else {
-      return Promise.reject(new Error(error));
+      return Promise.resolve(responseData);
     }
-  } else {
-    return Promise.resolve(responseData);
+  },
+  (e) => {
+    console.log('eee', e);
+    const error = new Error('错误');
+    return Promise.reject(error);
   }
+);
 
-}, (e) => {
-  console.log('eee', e);
-  const error = new Error('错误');
-  return Promise.reject(error);
-});
-
-export {
-  setOptions,
-  instance,
-};
+export { setOptions, instance };
