@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 // merge，合并两个或多个webpack配置文件
@@ -135,7 +136,7 @@ console.log('输入输出：', {
   directory,
 });
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const rules = createRules(entry, {
   include: [path.dirname(entry), path.dirname(PREVIEW_FILE)],
   style: true,
@@ -253,9 +254,12 @@ module.exports = merge(webpackConfigBase, {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+              esModule: true,
               // 开启css-modules
               modules: {
                 localIdentName: '[name]-[local]-[hash:base64:8]',
+                // import * as css from './nav.less';
+                namedExport: true,
               },
             },
           },
