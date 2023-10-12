@@ -1,38 +1,45 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import { Badge, Menu } from 'tdesign-react';
-import css from './nav.less';
+import { useNavigate } from 'react-router-dom';
+
+import * as css from './nav.less';
 
 const { HeadMenu, SubMenu, MenuItem } = Menu;
 
 export default () => {
-  const switchMenu = (value) => {};
+  const navigate = useNavigate();
+
+  const [active, setActive] = useState('0');
+  const [darkActive, setDarkActive] = useState('1');
+
+  const switchMenu = (value) => {
+    navigate(value);
+    console.error('value', value);
+  };
 
   return (
-    <div className={css.nav}>
-      <div className={css.navLeft}>
-        <HeadMenu
-          theme="dark"
-          expandType="popup"
-          logo={
-            <Badge count={2}>
-              <a href="/" className={css.navLogo}>
-                MA后台管理中心
-              </a>
-            </Badge>
-          }
-          onChange={(value) => switchMenu(value as string)}
-          value={'null'}
-        >
-          <SubMenu value="workflow-service" title="流程管理">
-            <MenuItem value="workflow-service">流程图配置</MenuItem>
-            <MenuItem value="workflow-service/modules">模块管理</MenuItem>
-            <MenuItem value="workflow-service/release-history">
-              发布历史
-            </MenuItem>
-            <MenuItem value="workflow-service/instances">流程实例</MenuItem>
-          </SubMenu>
-        </HeadMenu>
-      </div>
-    </div>
+    <>
+      <HeadMenu
+        theme="dark"
+        expandType="popup"
+        // logo={
+        //   <Badge count={2}>
+        //     <a href="/" className={css.navLogo}>
+        //       TEST
+        //     </a>
+        //   </Badge>
+        // }
+        onChange={(value) => switchMenu(value as string)}
+        value={'null'}
+      >
+        <SubMenu title="Redux">
+          <MenuItem value="test">TestFn</MenuItem>
+          <MenuItem value="test1">ClassFn</MenuItem>
+          <MenuItem value="input">InputFn</MenuItem>
+          <MenuItem value="check">CheckTd</MenuItem>
+        </SubMenu>
+      </HeadMenu>
+    </>
   );
 };

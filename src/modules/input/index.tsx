@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useEventBus } from '@src/hook/use-event-bus';
 
 import * as styles from './index.less';
 // import './index.less';
@@ -11,6 +12,8 @@ interface AppProps {
 }
 
 export function InputFn(props: AppProps) {
+  const { trigger, useListener } = useEventBus();
+
   const inputOnchange = (e) => {
     const file = e.target.files[0];
     // const fileBlob = new Blob(['123456'], { type: 'text/plain' });
@@ -31,6 +34,17 @@ export function InputFn(props: AppProps) {
     };
   };
 
+  const handleClickEvent = () => {
+    console.log('TestEvent');
+    trigger('TestEvent', 3);
+  };
+
+  // const handleEvent = (count) => {
+  //   console.log('event', count);
+  // };
+
+  // useListener('TestEvent', handleEvent);
+
   return (
     <>
       <div className={styles.inputTest}>
@@ -45,6 +59,7 @@ export function InputFn(props: AppProps) {
       </div>
 
       <span className="header">global解决css-module嵌套问题</span>
+      <div onClick={handleClickEvent}>Event</div>
     </>
   );
 }
