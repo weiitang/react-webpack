@@ -19,8 +19,9 @@ module.exports = {
     sourceType: 'module'
   },
   // extends: ["prettier"],
-  extends: ['plugin:prettier/recommended'],
-  plugins: ['react', 'prettier'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended',],
+  // extends: ['plugin:prettier/recommended'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   settings: {
     react: {
       version: 'detect'
@@ -34,6 +35,8 @@ module.exports = {
 //     'import/order': ["error"],
 //     '@typescript-eslint/no-misused-promises': 'off',
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    // 'import/order': ["error"],
 //     // 命名规则
 //     '@typescript-eslint/naming-convention': [
 //       'error',

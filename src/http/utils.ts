@@ -314,7 +314,7 @@ export function parseSearchQuery(search) {
 
   matches.forEach((item) => {
     /* eslint-disable no-unused-vars */
-    const [_, key, value] = item;
+    const [, key, value] = item;
     data[key] = tryGet(value);
   });
   return data;

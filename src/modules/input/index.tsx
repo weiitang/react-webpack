@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-import styles from './index.less';
+import * as styles from './index.less';
 // import './index.less';
 
 interface AppProps {

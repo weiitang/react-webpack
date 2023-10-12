@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 // const root = document.querySelector('#root');
 import { Dispatch, RootState } from '../../../model';
 
-interface AppProps {
+export interface AppProps {
   test?: string;
 }
 
-export function TestFn(props: AppProps) {
+export function TestFn() {
   const dispatch = useDispatch<Dispatch>();
   const state = useSelector((s: RootState) => s);
   // const fn = async () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Checkbox } from 'tdesign-react';
 
-import styles from './checkBox.less';
+import * as styles from './checkBox.less';
 
 export function TdCheckBox() {
   return (

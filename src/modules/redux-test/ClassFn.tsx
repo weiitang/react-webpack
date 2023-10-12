@@ -8,7 +8,7 @@ import { Dispatch, RootState } from '../../../model';
 interface ClassFnPropsType {
   test: string;
   pendingCount: number;
-  getPendingCountReq: () => {};
+  getPendingCountReq: () => void;
 }
 
 class ClassFn extends Component<ClassFnPropsType> {
