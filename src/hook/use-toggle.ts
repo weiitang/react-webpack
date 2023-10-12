@@ -46,5 +46,5 @@ function useToggle<D, R>(
 
   return [state, actions];
 }
-
+export { useToggle };
 export default useToggle;
