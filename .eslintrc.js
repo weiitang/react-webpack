@@ -36,6 +36,7 @@ module.exports = {
 //     '@typescript-eslint/no-misused-promises': 'off',
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     // 'import/order': ["error"],
 //     // 命名规则
 //     '@typescript-eslint/naming-convention': [
