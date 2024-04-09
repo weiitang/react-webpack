@@ -8,7 +8,10 @@ const projectDir = path.resolve(__dirname, '../..');
 // const webDir = path.resolve(projectDir, 'packages/web');
 
 if (!fs.existsSync(path.resolve(projectDir, '.vscode'))) {
-  fs.copySync(path.resolve(projectDir, '.samples/.vscode'), path.resolve(projectDir, '.vscode'));
+  fs.copySync(
+    path.resolve(projectDir, '.samples/.vscode'),
+    path.resolve(projectDir, '.vscode')
+  );
 }
 
 // if (!fs.existsSync(path.resolve(webDir, '.env'))) {
