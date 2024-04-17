@@ -10,7 +10,7 @@ function getBaseBranch() {
     | grep "\\*" \
     | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
     | head -n1 \
-    | sed "s/^.*\\[//"`,
+    | sed "s/^.*\\[//"`
   );
 }
 
@@ -79,8 +79,8 @@ try {
     // eslint-disable-next-line no-console
     console.log(
       chalk.red(
-        `${uncommits}\n以上文件尚未提交，不提交则可能本地的检查与线上的代码检查是不一致，本次推送可能存在风险，请再次确认这些文件是否不需要推送。`,
-      ),
+        `${uncommits}\n以上文件尚未提交，不提交则可能本地的检查与线上的代码检查是不一致，本次推送可能存在风险，请再次确认这些文件是否不需要推送。`
+      )
     );
   }
 } catch (err) {
