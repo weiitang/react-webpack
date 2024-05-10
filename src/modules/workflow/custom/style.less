@@ -1,0 +1,62 @@
+@import '@src/styles/variables.less';
+
+
+.iconSetting {
+  &:before {
+    display: inline-block;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url(./icon-setting.svg) center/80% no-repeat;
+  }
+}
+
+.iconFolderOpen,
+.iconDownload {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    content: '';
+    width: 46px;
+    height: 46px;
+    background: url(./icon-folder-open.svg) center/70% no-repeat;
+  }
+
+  &:after {
+    filter: drop-shadow(50px 0 #0086e6);
+  }
+
+  &:hover {
+    &:after {
+      transform: translateX(-50px);
+    }
+  }
+}
+
+.iconDownload {
+  &:before,
+  &:after {
+    background: url(./icon-download.svg) center/70% no-repeat;
+  }
+}
+
+:global {
+  .djs-context-pad.open {
+    background-color: #fff;
+    padding: @spacer4 @spacer8;
+    width: 82px;
+    box-shadow: 1px 1px 20px #f1f1f1;
+  }
+
+  .djs-context-pad .entry {
+    margin: 0 5px 5px 0;
+  }
+}

@@ -62,6 +62,8 @@
     "@rematch/persist": "^2.1.2",
     "axios": "^0.26.1",
     "axios-extensions": "^3.1.7",
+    "bpmn-js": "^9.1.0",
+    "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
     "immer": "^9.0.21",
     "lodash": "^4.17.21",

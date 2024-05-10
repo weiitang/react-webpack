@@ -1,0 +1,158 @@
+@import '@src/styles/fonts.less';
+
+
+.btnFooter {
+  margin-top: @spacer24;
+  margin-bottom: @spacer24;
+  display: flex;
+  justify-content: flex-end;
+  background-color: 'red';
+
+  .btn {
+    margin-right: @spacer12;
+  }
+}
+
+// .userTaskModal,
+// .gatewayModal {
+//   // :global {
+//   //   .t-dialog--default .t-dialog__body {
+//   //     padding: 0;
+//   //   }
+
+//   //   .t-dialog__footer {
+//   //     box-shadow: @shadow-top;
+//   //     padding-top: @spacer32;
+//   //   }
+//   // }
+
+//   .form {
+//     padding-bottom: @spacer16;
+//     max-height: 60vh;
+//     overflow: auto;
+
+//     .sortable {
+//       padding-top: @spacer24;
+
+//       .title {
+//         .text-4-bold;
+//       }
+//     }
+//   }
+// }
+
+.form {
+  position: relative;
+  height: 100%;
+  display: flex;
+  padding: @spacer12;
+
+  .formContent {
+    overflow: scroll;
+    flex: 1;
+    padding-bottom: 56px;
+  }
+
+  .btnFooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid @color-gray1;
+    background-color: @color-white1;
+    padding: @spacer12 0;
+    margin-bottom: 0;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-top: @spacer12;
+
+  .sortHandler {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    padding: @spacer8;
+  }
+}
+
+
+.inputText {
+  display: flex;
+  min-height: 240px;
+}
+
+.miniInputText {
+  display: flex;
+  min-height: 120px;
+}
+
+.timerInput {
+  display: flex;
+}
+
+
+// migrate
+.migrateTips {
+  color: @color-brand7;
+  cursor: pointer;
+  margin-top: @spacer12;
+}
+
+
+// instance log
+.instanceLog {
+  display: flex;
+  flex-direction: column;
+  // min-height: 300px;
+  // max-height: calc(100vh - 300px);
+  min-height: 300px;
+  height: calc(50vh);
+  margin-bottom: @spacer24;
+  overflow: auto;
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .treeIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .toggleTree {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: @spacer12;
+  }
+
+  .logNode,
+  .logNodePending {
+    background: @color-brand-bg;
+    color: @color-white1;
+    padding: @spacer4 @spacer8;
+    border-radius: @spacer4;
+  }
+
+  .logNodePending {
+    background: none;
+    background-color: @color-brand1;
+    color: @color-font-gray3;
+  }
+
+  .logTime {
+    .text-5();
+    color: @color-font-gray3;
+  }
+
+  :global {
+    .t-tree__label {
+      flex-shrink: 1;
+    }
+  }
+}

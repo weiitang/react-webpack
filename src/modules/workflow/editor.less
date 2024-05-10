@@ -1,0 +1,108 @@
+@import '@src/styles/fonts.less';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .steps {
+    padding: @spacer32 0;
+    width: 436px;
+  }
+
+  .formWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+}
+
+.infoWrapper {
+  width: 640px;
+  padding: @spacer32 0;
+
+  button {
+    margin-right: @spacer8;
+  }
+}
+
+
+.bpmnWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid @color-gray1;
+
+  // .bpmnNav {
+  //   width: 240px;
+  //   height: 100%;
+  //   border-right: 1px solid @color-gray2;
+
+  //   .bpmnToolTitle {
+  //     display: flex;
+  //     align-items: center;
+  //     padding: 0 @spacer24;
+  //     .text-3-bold();
+  //     background-color: @color-blue-gray1;
+  //     height: 48px;
+  //   }
+  // }
+
+  .bpmnEditor {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .info {
+      position: absolute;
+      z-index: 1;
+      padding: 10px 20px;
+    }
+
+    .bpmnContainer {
+      flex: 1;
+      height: calc(100vh - 300px);
+    }
+
+    .propertyPanel {
+      position: absolute;
+      z-index: 200;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+
+      border-left: 1px solid @color-gray1;
+      background-color: @color-white1;
+      // box-shadow: @shadow-top;
+      box-shadow: -1px 0 10px @color-gray2;
+    }
+  }
+
+  .bpmnBtns {
+    display: flex;
+    justify-content: center;
+    padding: @spacer24 0;
+    border-top: 1px solid @color-gray1;
+
+    button {
+      margin-right: @spacer8;
+    }
+  }
+}
+
+
+
+.fileInput {
+  width: 1px;
+  height: 1px;
+  display: none;
+}
+
+// 注意这里的css权重，不要挪到infoWrapper或bpmnWrapper前面
+.hide {
+  display: none;
+}

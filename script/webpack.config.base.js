@@ -66,7 +66,7 @@ module.exports = {
                 },
               ],
               // 解析react
-              '@babel/preset-react',
+              ['@babel/preset-react', { runtime: 'automatic' }],
               '@babel/preset-typescript',
             ],
             // 使用transform-runtime，避免全局污染，注入helper

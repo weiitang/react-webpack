@@ -24,7 +24,6 @@ const options = CONFIG[ENV];
 
 // 基准路径（包括接口、静态资源的根路径）：
 // 1） https://tpptest.oa.com
-// 2） https://oa.m.tencent.com/an:tpptest
 // 3） http://localhost:8081 或 http://10.0.3.2:8081 （dev-server不直接取localhost，因为在客户端中可能使用ip映射）
 const baseURL = location.origin;
 // if (process.env.PLATFORM === 'app') {

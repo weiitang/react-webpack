@@ -65,7 +65,6 @@ export function isHttpURL(url) {
  * @param {Boolean} [baseAppStatic:false] 是否基于App静态资源路径, 只对App平台有效
  * eg:
  *  1) tpptest.oa.com/app/xxx
- *  2) oa.m.tencent.com/an:tpptest/app/xxx
  * @return {String}
  */
 export function toBaseURL(url, baseAppStatic = false) {
@@ -113,7 +112,6 @@ export function toBaseURL(url, baseAppStatic = false) {
 
   // App下，非开发模式下需要附加根目录
   // https://tpptest.oa.com/app
-  // https://oa.m.tencent.com/an:tpptest/app
   if (process.env.PLATFORM === 'app' && baseAppStatic) {
     const path = baseURL + '/app';
     // 检查当前路径是否包含/app目录来判断

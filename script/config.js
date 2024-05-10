@@ -35,7 +35,10 @@ function createBabelConfig(entry, options = {}) {
       path.resolve(__dirname, '../plugins/babel-plugin-auto-css-modules.js'),
       ['@babel/plugin-proposal-decorators', { legacy: true }],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
-      ['transform-class-remove-static-properties', { mode: env === 'production' ? 'remove' : 'wrap' }],
+      [
+        'transform-class-remove-static-properties',
+        { mode: env === 'production' ? 'remove' : 'wrap' },
+      ],
     ],
     include: [...include, ...includes],
     exclude: ex.length ? ex : void 0,
@@ -45,7 +48,12 @@ function createBabelConfig(entry, options = {}) {
 }
 
 function createRules(entry, options) {
-  const { include: includes = [], exclude: excludes = [], style, css } = options;
+  const {
+    include: includes = [],
+    exclude: excludes = [],
+    style,
+    css,
+  } = options;
   const babelConfig = createBabelConfig(entry, options);
   const ex = [...exclude, ...excludes];
   return [
@@ -59,7 +67,10 @@ function createRules(entry, options) {
         ...createHotModuleLoaders(entry, options),
         ...createPolyfills(entry, options).webpackLoaders,
         {
-          loader: path.resolve(__dirname, '../loaders/implement-shared-loader.js'),
+          loader: path.resolve(
+            __dirname,
+            '../loaders/implement-shared-loader.js'
+          ),
           options: {
             abstractDir: path.resolve(projectDir, 'packages/shared'),
             implementDir: path.resolve(rootDir, 'src/@implements'),
@@ -94,7 +105,12 @@ function createRules(entry, options) {
       oneOf: [
         {
           resourceQuery: /module/,
-          use: createStylesheetLoaders({ less: true, module: true, style, css }),
+          use: createStylesheetLoaders({
+            less: true,
+            module: true,
+            style,
+            css,
+          }),
         },
         {
           use: createStylesheetLoaders({ less: true, style, css }),
@@ -122,7 +138,11 @@ const createResolve = (app) => {
       util: require.resolve('util'),
       buffer: require.resolve('buffer'),
     },
-    modules: ['node_modules', path.resolve(rootDir, 'node_modules'), path.resolve(projectDir, 'node_modules')],
+    modules: [
+      'node_modules',
+      path.resolve(rootDir, 'node_modules'),
+      path.resolve(projectDir, 'node_modules'),
+    ],
     extensions,
   };
   if (app) {
@@ -171,7 +191,9 @@ function createPolyfills(entry, { corejs } = {}) {
     loose: true,
   };
 
-  const prependText = `${corejs ? 'import "core-js";\n' : ''}import "regenerator-runtime/runtime";\n`;
+  const prependText = `${
+    corejs ? 'import "core-js";\n' : ''
+  }import "regenerator-runtime/runtime";\n`;
   const webpackLoader = {
     loader: path.resolve(__dirname, '../loaders/replace-content-loader.js'),
     options: {
@@ -193,7 +215,8 @@ function createStylesheetLoaders(options = {}) {
   const cssLoaderModuleConfig = {
     esModule: true,
     modules: {
-      localIdentName: env === 'production' ? '[hash:base64]' : '[path][name]__[local]',
+      localIdentName:
+        env === 'production' ? '[hash:base64]' : '[path][name]__[local]',
       namedExport: true,
     },
   };

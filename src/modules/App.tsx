@@ -5,6 +5,7 @@ import ClassFn from '@src/modules/redux-test/ClassFn';
 import { InputFn } from '@src/modules/input';
 import Nav from './../nav/nav';
 import { TdCheckBox } from '@src/modules/td/checkBox';
+import { Workflow } from '@src/modules/workflow';
 
 import './../index.less';
 // import * as styles from './../index.less';
@@ -25,6 +26,7 @@ export function App() {
           <Route path="test1" element={<ClassFn />}></Route>
           <Route path="input" element={<InputFn />}></Route>
           <Route path="check" element={<TdCheckBox />}></Route>
+          <Route path="workflow" element={<Workflow />}></Route>
         </Routes>
       </BrowserRouter>
     </>
