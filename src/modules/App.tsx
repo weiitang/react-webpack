@@ -6,6 +6,7 @@ import { InputFn } from '@src/modules/input';
 import Nav from './../nav/nav';
 import { TdCheckBox } from '@src/modules/td/checkBox';
 import { Workflow } from '@src/modules/workflow';
+import Sheet from '@src/modules/sheet/sheet-demo';
 
 import './../index.less';
 // import * as styles from './../index.less';
@@ -27,6 +28,7 @@ export function App() {
           <Route path="input" element={<InputFn />}></Route>
           <Route path="check" element={<TdCheckBox />}></Route>
           <Route path="workflow" element={<Workflow />}></Route>
+          <Route path="sheet" element={<Sheet />}></Route>
         </Routes>
       </BrowserRouter>
     </>

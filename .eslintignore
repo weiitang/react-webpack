@@ -18,3 +18,7 @@ packages/shared/api/
 tsconfig.json
 *.-test.tsx
 embed/
+src/lib/luckysheet-excel
+src/modules/sheet/luckysheet-excel/
+src/hook/use-request/__test__
+static/

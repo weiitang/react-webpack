@@ -1,0 +1,59 @@
+@import '@src/styles/atom.less';
+
+.loading {
+  height: 100%;
+  .flex-c;
+}
+
+.empty {
+  .mt-48;
+  .flex-c;
+}
+
+.wrap {
+  .collapseWrap {
+    border: 0;
+
+    :global {
+      .t-collapse-panel__wrapper .t-collapse-panel__header,
+      .t-collapse-panel__wrapper .t-collapse-panel__body {
+        border-color: #e5e5e5;
+      }
+    }
+  }
+
+  .label {
+    .text-4;
+  }
+
+  .iconWrap {
+    padding: 10px;
+    color: @color-brand7;
+    .flex-c;
+  }
+
+  .remarkItem {
+    .text-4;
+
+    .titleWrap {
+      .flex-row;
+      align-items: center;
+
+      .title {
+        .text-3-bold;
+        color: @color-font-gray1;
+      }
+
+      .time {
+        .ml-8;
+        .text-5;
+      }
+    }
+
+    .content {
+      .mt-8;
+      .text-4;
+      color: @color-font-gray1;
+    }
+  }
+}

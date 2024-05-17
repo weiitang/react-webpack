@@ -1,0 +1,123 @@
+@import '@src/styles/atom.less';
+
+.containerWrap {
+  position: relative;
+  .m-12;
+  z-index: 0;
+  flex: 1;
+  .flex-row;
+
+  .sheetWrap {
+    flex: 1;
+  }
+  
+  .sidebarWrap {
+    position: relative;
+    z-index: 999;
+    width: 350px;
+    height: 887px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+
+    :global {
+      .t-tabs__nav-item.t-size-m {
+        height: 39px;
+        line-height: 39px;
+      }
+
+      .t-tabs__nav-item-wrapper {
+        .text-4;
+      }
+
+      .t-tabs__nav-item > .remove-btn {
+        margin-left: 0;
+      }
+
+      .t-tabs__btn.t-size-m {
+        height: 38px;
+        line-height: 38px;
+      }
+      
+      .t-tabs__content {
+        flex: 1;
+      }
+    }
+
+    .tabsWrap {
+      height: 100%;
+      .flex-col;
+      display: flex;
+
+      :global {
+        .t-tabs__nav {
+          /* stylelint-disable-next-line declaration-no-important */
+          min-height: 40px !important;
+        }
+      }
+    }
+
+    .tabPanel {
+      height: 100%;
+      overflow-y: auto;
+      .scrollbar;
+    }
+  }
+}
+
+.toolWrap {
+  background: #fafafc;
+  position: relative;
+  border-top: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  display: flex;
+  padding: 6px 0;
+
+  .tool {
+    cursor: pointer;
+    .flex-row;
+    .flex-c;
+    .text-4;
+    color: #333;
+    .space-x-4;
+    .px-8;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    .mx-4;
+    position: relative;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: rgba(0,0,0,.06);
+      background-image: none;
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    p {
+      .ellipsis;
+    }
+  }
+  
+  .toolDisabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    box-shadow: none;
+  }
+}
+
+.toolWrap .tool:not(:last-of-type) {
+  &::after {
+    display: block;
+    content: '';
+    width: 1px;
+    height: 15px;
+    background-color: #e0e0e0;
+    position: absolute;
+    right: -4px;
+    top: 5px;
+  }
+}

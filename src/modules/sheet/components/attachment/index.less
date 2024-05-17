@@ -1,0 +1,41 @@
+@import '@src/styles/atom.less';
+
+.loading {
+  height: 100%;
+  .flex-c;
+}
+
+.wrap {
+  .flex-col;
+
+  .uploadBth {
+    .px-16;
+    .py-12;
+  }
+
+  :global {
+    .t-upload__trigger {
+      width: 100%;
+    }
+  }
+
+  .divider {
+    .m-0;
+  }
+
+  .linkWrap {
+    .flex-row;
+  }
+}
+
+.fileList {
+  >div:not(:last-child) {
+    margin-bottom: 0;
+    border-bottom: 1px solid @color-gray2;
+  }
+}
+
+.empty {
+  .mt-48;
+  .flex-c;
+}

@@ -4,9 +4,10 @@
     "lib": ["dom", "es5", "es6", "es7", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "checkJs": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -18,6 +19,9 @@
     "noImplicitAny": false,
     "jsx": "react-jsx",
     "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
 
     // 别名
     "baseUrl": ".",
@@ -25,7 +29,11 @@
       "@src/*": [
         "./src/*"
       ],
-    }
+      "@model/*": [
+        "./model/*"
+      ],
+    },
+    "outDir": "/"
   },
 
   //  "compilerOptions": {
@@ -67,5 +75,5 @@
   //   }
   // },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/modules/workflow/custom/**", "src/hook/use-request/__test__", "static/**", "src/lib/luckysheet-excel"]
 }

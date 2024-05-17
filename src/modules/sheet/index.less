@@ -1,0 +1,45 @@
+@import '@src/styles/atom.less';
+
+.flexBox {
+  .flex;
+}
+
+.drawerWrap {
+  :global {
+    .t-drawer__body {
+      padding: 0;
+    }
+  }
+}
+
+.alertWrap {
+  .px-12;
+  .pt-12;
+}
+
+.headerWrap {
+  .px-12;
+  .pt-12;
+  .flex-row;
+  .space-x-16;
+
+  .left {
+    .flex-1;
+
+    .detail {
+      .flex-row;
+      .space-x-8;
+    }
+  }
+
+  .right {
+    .flex-row;
+    .space-x-8;
+  }
+}
+
+.copy {
+  cursor: pointer;
+  color: @color-brand7;
+  .ml-8;
+}

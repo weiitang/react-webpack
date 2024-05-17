@@ -13,9 +13,13 @@ export const store = init<RootModel>({
     middlewares: [
       createLogger({
         predicate: (getState, action) =>
-          !['loading/show', '@@redux/REPLACE ', 'counter/count', 'loading/hide', '@@router/LOCATION_CHANGE'].includes(
-            action.type,
-          ),
+          ![
+            'loading/show',
+            '@@redux/REPLACE ',
+            'counter/count',
+            'loading/hide',
+            '@@router/LOCATION_CHANGE',
+          ].includes(action.type),
         collapsed: true,
       }),
     ],

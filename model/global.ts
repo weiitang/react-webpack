@@ -29,7 +29,7 @@ export const global = createModel<RootModel>()({
   },
   effects: (dispatch) => ({
     getPendingCountReq(p, s) {
-      const data =  s.global.pendingCount + 1;
+      const data = s.global.pendingCount + 1;
       dispatch.global.setPendingCount(data);
       // this.setPendingCount(2);
     },

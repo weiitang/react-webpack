@@ -39,6 +39,7 @@ module.exports = {
     alias: {
       // 注意resolve方法开始的查找的路径是/
       '@src': [path.resolve(process.cwd(), 'src')],
+      '@model': [path.resolve(process.cwd(), 'model')],
     },
   },
 
