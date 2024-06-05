@@ -17,6 +17,7 @@ const { createRules } = require('./config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
 
@@ -61,6 +62,7 @@ console.log('环境变量：', {
   PROXY_AUTH_BROWSER,
   IS_APP,
   open,
+  dir: path.resolve(process.cwd(), 'static'),
 });
 
 const proxy = {};
@@ -209,6 +211,7 @@ module.exports = merge(webpackConfigBase, {
     // }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
+      staticDirName: 'static',
     }),
 
     new MiniCssExtractPlugin({
@@ -223,6 +226,15 @@ module.exports = merge(webpackConfigBase, {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         PLATFORM: '"pc"',
       },
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(process.cwd(), 'static'),
+          to: 'static',
+          noErrorOnMissing: true,
+        },
+      ],
     }),
   ],
 
