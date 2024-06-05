@@ -159,6 +159,7 @@ function SheetDemo(props) {
   const { loading: saveLoading, run: saveDetail } = useRequest(
     () =>
       new Promise<any>((req) => {
+        console.log('data', sheet.current.getSheetData());
         setTimeout(() => {
           req({});
         }, 1000);

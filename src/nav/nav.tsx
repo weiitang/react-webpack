@@ -15,7 +15,7 @@ export default () => {
 
   const switchMenu = (value) => {
     navigate(value);
-    console.error('value', value);
+    // console.error('value', value);
   };
 
   return (
@@ -38,6 +38,7 @@ export default () => {
           <MenuItem value="test1">ClassFn</MenuItem>
           <MenuItem value="input">InputFn</MenuItem>
           <MenuItem value="check">CheckTd</MenuItem>
+          <MenuItem value="sheet">Sheet</MenuItem>
         </SubMenu>
       </HeadMenu>
     </>

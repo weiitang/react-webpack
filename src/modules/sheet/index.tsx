@@ -25,7 +25,7 @@ const DEFAULT_CONFIG = {
   plugins: [
     {
       name: 'chart',
-      config: { baseUrl: `/${process.env.STATIC_DIR_NAME}/luckysheet/` },
+      config: { baseUrl: `/static/luckysheet/` },
     },
     // { name: 'exportXlsx', config: { url: 'http://localhost:3002/luckyToXlsx' } },
     // {
@@ -603,7 +603,7 @@ export const LuckSheet = (props: LuckSheetProps) => {
           padding: 0,
           // position: 'absolute',
           width: '100%',
-          height: '100%',
+          height: 580,
           // left: '0px',
           // top: '0px',
         }}
