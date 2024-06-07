@@ -7,6 +7,7 @@ import Nav from './../nav/nav';
 import { TdCheckBox } from '@src/modules/td/checkBox';
 import { Workflow } from '@src/modules/workflow';
 import Sheet from '@src/modules/sheet/sheet-demo';
+import { FormTest } from '@src/modules/form';
 
 import './../index.less';
 // import * as styles from './../index.less';
@@ -29,6 +30,7 @@ export function App() {
           <Route path="check" element={<TdCheckBox />}></Route>
           <Route path="workflow" element={<Workflow />}></Route>
           <Route path="sheet" element={<Sheet />}></Route>
+          <Route path="from" element={<FormTest />}></Route>
         </Routes>
       </BrowserRouter>
     </>

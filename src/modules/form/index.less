@@ -1,0 +1,75 @@
+@import '@src/styles/variables.less';
+@import '@src/styles/atom.less';
+
+.deliveryFormGroup {
+  margin-bottom: @spacer16;
+}
+
+.deliveryModuleTabs {
+  margin-top: @spacer24;
+}
+
+.deliveryProjectTitle {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid #eee;
+
+  .p-24;
+  .pb-8;
+
+  .deliveryProject {
+    max-width: 80%;
+    .text-2;
+    .pr-24;
+  }
+}
+
+.deliveryModuleContainer {
+  width: 640px;
+  // padding: @spacer40 0;
+  margin: auto;
+
+  .deliveryModuleSteps {
+    width: 80%;
+    margin: auto;
+    margin-bottom: @spacer64;
+  }
+}
+
+.deliveryModuleButtons {
+  margin-top: @spacer24;
+  margin-bottom: @spacer24;
+
+  button {
+    margin-right: @spacer8;
+  }
+}
+
+.tipsIcon {
+  display: inline-block;
+  margin-left: @spacer4;
+  transform: translateY(2px); // 与文字对齐
+  cursor: help;
+}
+
+.tipsContent {
+  max-width: 380px;
+  padding: @spacer8;
+}
+
+.terminateRadio {
+  margin-top: 12px;
+}
+
+.terminateRadioTips {
+  padding-top: 16px;
+}
+
+.pushLegal {
+  padding-right: 0;
+}
+
+:global .t-select-input__wrap {
+  width: 100%;
+}
+

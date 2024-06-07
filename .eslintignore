@@ -22,3 +22,5 @@ src/lib/luckysheet-excel
 src/modules/sheet/luckysheet-excel/
 src/hook/use-request/__test__
 static/
+src/lib/tyshemo/
+src/lib/ts-fns/

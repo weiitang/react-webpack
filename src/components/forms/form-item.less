@@ -1,0 +1,96 @@
+@import '@src/styles/variables.less';
+
+.formItem {
+  position: relative;
+
+  & + & {
+    margin-top: @spacer24;
+  }
+
+  & + &.formPureItem {
+    margin-top: @spacer12;
+  }
+
+  &.formPureItem + &.formPureItem {
+    margin-top: 0;
+  }
+
+  &-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-label-info,
+  &-info {
+    font-size: @font-size5;
+    line-height: 1;
+  }
+
+  &-label-info {
+    margin-right: -24px; // 修复tdesign右侧边距
+  }
+
+  &-info {
+    margin-left: @spacer8;
+    position: absolute;
+    left: 100%;
+    top: ~'calc(16px - @{font-size5} / 2)';
+    white-space: nowrap;
+  }
+
+  // 用于从tdesign的表单组件控制中脱离出来
+  &__box {
+    display: contents;
+
+    :global {
+      // tdesign 是正常的，这里的前缀会换行，这里做特别处理
+      .t-input-adornment__prepend {
+        word-break: initial;
+      }
+    }
+  }
+
+  // tdesign的formitem盒子是display: flex; 如果不加flex:1会导致内部内容宽度不自然
+  &__box > div,
+  &__box > section {
+    flex: 1;
+    width: 100%;
+  }
+
+  &-error {
+    color: @color-error6;
+  }
+}
+
+.tipsIcon,
+.helpIcon {
+  display: inline-block;
+  margin-left: @spacer4;
+  transform: translateY(2px); // 与文字对齐
+  cursor: help;
+}
+
+.actionRight {
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.tipsContent,
+.helpContent {
+  max-width: 260px;
+  padding: @spacer8;
+}
+
+.formItemSuccuss {
+  color: @color-success6;
+}
+
+.formHelp {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}

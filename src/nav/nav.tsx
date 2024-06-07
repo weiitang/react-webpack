@@ -39,6 +39,7 @@ export default () => {
           <MenuItem value="input">InputFn</MenuItem>
           <MenuItem value="check">CheckTd</MenuItem>
           <MenuItem value="sheet">Sheet</MenuItem>
+          <MenuItem value="from">From</MenuItem>
         </SubMenu>
       </HeadMenu>
     </>
