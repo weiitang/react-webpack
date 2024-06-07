@@ -32,6 +32,21 @@
       "@model/*": [
         "./model/*"
       ],
+      "ts-fns": [
+        "./src/lib/ts-fns"
+      ],
+      "tyshemo": [
+        "./src/lib/tyshemo"
+      ],
+      "algeb": [
+        "./src/lib/algeb"
+      ],
+      "@core": [
+        "./src/core"
+      ],
+      "@typings/*": [
+        "./src/typings/*"
+      ]
     },
     "outDir": "/"
   },
