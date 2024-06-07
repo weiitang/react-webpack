@@ -40,6 +40,11 @@ module.exports = {
       // 注意resolve方法开始的查找的路径是/
       '@src': [path.resolve(process.cwd(), 'src')],
       '@model': [path.resolve(process.cwd(), 'model')],
+      '@core': [path.resolve(process.cwd(), 'src/core')],
+      '@typings': [path.resolve(process.cwd(), 'src/typings')],
+      tyshemo: [path.resolve(process.cwd(), 'src/lib/tyshemo')],
+      'ts-fns': [path.resolve(process.cwd(), 'src/lib/ts-fns')],
+      algeb: [path.resolve(process.cwd(), 'src/lib/algeb')],
     },
   },
 
@@ -71,7 +76,11 @@ module.exports = {
               '@babel/preset-typescript',
             ],
             // 使用transform-runtime，避免全局污染，注入helper
-            plugins: ['@babel/plugin-transform-runtime'],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              // 解析装饰器插件
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+            ],
           },
         },
       },
