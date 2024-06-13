@@ -62,9 +62,13 @@ export function TestEvent() {
   useListener('TestEvent', handleEvent);
 
   return (
-    <div className="root">
-      <div>{count}</div>
-    </div>
+    <>
+      <div className="root">
+        <div>{count}</div>
+      </div>
+
+      <div className="header3">全局样式</div>
+    </>
   );
 }
 

@@ -247,75 +247,85 @@ module.exports = merge(webpackConfigBase, {
       //     {loader: "ts-loader"},
       //   ]
       // },
+      // {
+      //   test: /\.css$/,
+      //   include: /node_modules/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //     },
+      //   ],
+      // },
       {
         test: /\.css$/,
-        include: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
+        oneOf: [
           {
-            loader: 'css-loader',
+            resourceQuery: /module/,
+            use: createStylesheetLoaders({
+              module: true,
+              style: true,
+              css: false,
+            }),
+          },
+          {
+            use: createStylesheetLoaders({ style: true, css: false }),
           },
         ],
       },
+      // 将css-modules和直接引入css共存的方法
+      // 1、:global
+      // 2、自定义babel插件，在文件路径后增加?xxx参数并配置在babel中，在webpack中的oneOf里resourceQuery匹配
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     // 生产环境下直接分离打包css
+      //     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         sourceMap: true,
+      //         esModule: true,
+      //         // 开启css-modules
+      //         modules: {
+      //           localIdentName: '[name]-[local]-[hash:base64:8]',
+      //           // import * as css from './nav.less';
+      //           namedExport: true,
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: 'postcss-loader',
+      //       options: {
+      //         postcssOptions: {
+      //           // 浏览器前缀自动补全
+      //           plugins: ['autoprefixer'],
+      //         },
+      //       },
+      //     },
+      //     // 将less-loader写在postcss-loader后面  less文件中{}注释会报错
+      //     'less-loader',
+      //   ],
+      // },
       {
         test: /\.less$/,
-        use: [
-          // 生产环境下直接分离打包css
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+        oneOf: [
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              esModule: true,
-              // 开启css-modules
-              modules: {
-                localIdentName: '[name]-[local]-[hash:base64:8]',
-                // import * as css from './nav.less';
-                namedExport: true,
-              },
-            },
+            resourceQuery: /module/,
+            use: createStylesheetLoaders({
+              less: true,
+              module: true,
+              style: true,
+              css: false,
+            }),
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                // 浏览器前缀自动补全
-                plugins: ['autoprefixer'],
-              },
-            },
+            use: createStylesheetLoaders({
+              less: true,
+              style: true,
+              css: false,
+            }),
           },
-          // 将less-loader写在postcss-loader后面  less文件中{}注释会报错
-          'less-loader',
-          // {
-          //   loader: path.resolve(__dirname, './loaders/replace-content-loader.js'),
-          //   options: {
-          //     replace(content) {
-          //       return content
-          //         .replace(/composes:(.*?) from .*?['"](.*?)['"];/gi, (_, $1, $2) => {
-          //           const [path] = $2.split('?');
-          //           const ext = path.split('.').pop();
-          //           if (less && ext === 'less') {
-          //             return `composes: ${$1.trim()} from 'less-loader!${$2}';`;
-          //           }
-          //           if (sass && (ext === 'sass' || ext === 'scss')) {
-          //             return `composes: ${$1.trim()} from 'sass-loader!${$2}';`;
-          //           }
-          //           return _;
-          //         })
-          //         .replace(/:import\(["'](.*?)["']\)/gi, (_, $1) => {
-          //           const [path] = $1.split('?');
-          //           const ext = path.split('.').pop();
-          //           if (less && ext === 'less') {
-          //             return `:import('less-loader!${$1}')`;
-          //           }
-          //           if (sass && (ext === 'sass' || ext === 'scss')) {
-          //             return `:import('sass-loader!${$1}')`;
-          //           }
-          //           return _;
-          //         });
-          //     },
-          //   },
-          // }
         ],
       },
       // {
@@ -365,4 +375,101 @@ function generateEnvConsts() {
     }
   });
   return obj;
+}
+
+function createStylesheetLoaders(options = {}) {
+  const sourceMapConfig = {
+    sourceMap: process.env?.NODE_ENV === 'production',
+  };
+  const cssLoaderModuleConfig = {
+    esModule: true,
+    modules: {
+      localIdentName:
+        process.env?.NODE_ENV === 'production'
+          ? '[hash:base64]'
+          : '[path][name]__[local]',
+      namedExport: true,
+    },
+  };
+  const { module, style, less, sass, css } = options;
+  const loaders = [];
+  if (module) {
+    loaders.unshift({
+      loader: 'css-loader',
+      options: {
+        ...cssLoaderModuleConfig,
+        ...sourceMapConfig,
+      },
+    });
+  } else {
+    loaders.unshift({
+      loader: 'css-loader',
+      options: {
+        ...sourceMapConfig,
+      },
+    });
+  }
+
+  if (style) {
+    loaders.unshift('style-loader');
+  } else if (css) {
+    loaders.unshift(MiniCssExtractPlugin.loader);
+  }
+
+  loaders.push({
+    loader: 'postcss-loader',
+  });
+
+  if (less) {
+    loaders.push({
+      loader: 'less-loader',
+      options: {
+        ...sourceMapConfig,
+      },
+    });
+  }
+
+  if (sass) {
+    loaders.push({
+      loader: 'sass-loader',
+      options: {
+        ...sourceMapConfig,
+      },
+    });
+  }
+
+  if (less || sass) {
+    loaders.push({
+      loader: path.resolve(__dirname, './loaders/replace-content-loader.js'),
+      options: {
+        replace(content) {
+          return content
+            .replace(/composes:(.*?) from .*?['"](.*?)['"];/gi, (_, $1, $2) => {
+              const [path] = $2.split('?');
+              const ext = path.split('.').pop();
+              if (less && ext === 'less') {
+                return `composes: ${$1.trim()} from 'less-loader!${$2}';`;
+              }
+              if (sass && (ext === 'sass' || ext === 'scss')) {
+                return `composes: ${$1.trim()} from 'sass-loader!${$2}';`;
+              }
+              return _;
+            })
+            .replace(/:import\(["'](.*?)["']\)/gi, (_, $1) => {
+              const [path] = $1.split('?');
+              const ext = path.split('.').pop();
+              if (less && ext === 'less') {
+                return `:import('less-loader!${$1}')`;
+              }
+              if (sass && (ext === 'sass' || ext === 'scss')) {
+                return `:import('sass-loader!${$1}')`;
+              }
+              return _;
+            });
+        },
+      },
+    });
+  }
+
+  return loaders;
 }

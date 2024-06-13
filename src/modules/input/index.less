@@ -3,17 +3,18 @@
     color: red;
   }
 }
-
+// 颜色
 .inputTestCss {
   & .header {
-    color: purple;
+    color: purple; // 颜色
   }
 }
 
+// 颜色
 :local {
   .inputTestCss {
     & .header {
-      color: red;
+      color: red; 
     }
   }
 
@@ -27,7 +28,16 @@
 }
 
 :global {
-  .header {
+  .header2 {
     color: #ccc;
   }
+}
+
+.header1 {
+  color: red;
+  //
+}
+
+.header3 {
+  color: purple;
 }

@@ -80,6 +80,11 @@ module.exports = {
               '@babel/plugin-transform-runtime',
               // 解析装饰器插件
               ['@babel/plugin-proposal-decorators', { legacy: true }],
+              // 给less文件后见?xxx参数
+              path.resolve(
+                __dirname,
+                './plugins/babel-plugin-auto-css-modules.js'
+              ),
             ],
           },
         },
