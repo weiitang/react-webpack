@@ -1,0 +1,110 @@
+/* stylelint-disable selector-max-id */
+@import '@src/styles/variables.less';
+@import '@src/styles/fonts.less';
+@import '@src/styles/atom.less';
+
+// 加上div，否则ql-editor优先级更高
+div.previewer {
+  padding: 0;
+  word-wrap: break-word;
+  word-break: break-word; // 按单词换行
+
+  &.pointer {
+    img {
+      cursor: pointer;
+    }
+  }
+
+  // 防止图片撑开
+  img {
+    max-width: 100%;
+  }
+}
+
+.container {
+  .toolbar {
+    display: flex;
+    align-items: center;
+    background-color: @color-gray1;
+
+    .button {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      background: none;
+      cursor: pointer;
+      padding: 3px 5px;
+      height: 24px;
+      width: 28px;
+      border: hidden;
+      font-size: 18px;
+    }
+  }
+
+  .quill {
+    background-color: #fff;
+  }
+
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: @color-font-gray4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .messageTip {
+    position: absolute;
+    top: 40px;
+    left: 0;
+  }
+
+  :global {
+    .ql-editor {
+      min-height: 132px;
+      word-break: break-word;
+      max-height: 300px;
+      .scrollbar;
+    }
+
+    .ql-toolbar.ql-snow {
+      border: 1px solid @color-gray4;
+      border-bottom: hidden;
+      padding: 8px 0 8px 8px;
+      width: 100%;
+    }
+
+    .ql-container.ql-snow {
+      border: 1px solid @color-gray4;
+    }
+
+    .ql-active {
+      color: @color-brand7!important;
+
+      .ql-stroke {
+        stroke: @color-brand7!important;
+      }
+    }
+  }
+}
+
+:global {
+  .btn-ql {
+    display: inline-block;
+  }
+
+  .editor-parse-popup {
+    .t-upload {
+      display: inline-block;
+
+      .file-parse-btn {
+        color: #fff;
+      }
+    }
+  }
+}
