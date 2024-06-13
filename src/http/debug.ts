@@ -31,7 +31,7 @@ export function getGhostUser() {
   // 1. 本地调试
   // 2. 客户端中调试本地网页（开发环境），避免App进入时无法登录
   if (isApp && !user && process.env.NODE_ENV === 'development') {
-    user = 'tiramisu';
+    user = '';
   }
 
   return user;

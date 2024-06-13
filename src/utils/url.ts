@@ -194,7 +194,7 @@ export function getRedirectUrl(options: { app?: string; web?: string }) {
     qs.push(`web=${encodeURIComponent(web)}`);
   }
 
-  return `https://investment.tencent.com/app/redirect.html?${qs.join('&')}`;
+  return `app/redirect.html?${qs.join('&')}`;
 }
 
 /**

@@ -18,7 +18,7 @@ export function TestRedux() {
   const { trigger } = useEventBus();
 
   // const fn = async () => {
-  //   const data = await instance.get('/v1/signs/20230724161421462', { params: { ghostlogin: 'tiramisu' }});
+  //   const data = await instance.get('/v1/signs/20230724161421462', { params: { ghostlogin: '' }});
 
   // };
 
