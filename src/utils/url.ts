@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { isObject } from 'lodash';
+
 export function parseUrl(url: string): {
   path: string;
   pathname: string;
@@ -192,4 +195,54 @@ export function getRedirectUrl(options: { app?: string; web?: string }) {
   }
 
   return `https://investment.tencent.com/app/redirect.html?${qs.join('&')}`;
+}
+
+/**
+ * 获取路径，自动替换相对路径为完整的项目路径（自动添加ghostlogin、__env等参数）
+ * @param url
+ * @param params 需要拼接到url的参数
+ * @param options
+ *  {
+ *    includeDomain: true, // 是否拼接域名，默认true
+ *    isEntryEnv: false, // 是否作为入口地址使用，调试用，默认false（表示使用__env参数)， true时__env参数变更为_env，避免首页资源加载失败
+ *  }
+ * @param includeDomain 是否拼接域名，默认true
+ * @returns
+ */
+export function getProjectUrl(
+  url: any,
+  params?: object,
+  options?: { includeDomain?: boolean; isEntryEnv?: boolean }
+) {
+  if (!url || typeof url !== 'string') {
+    return url;
+  }
+
+  let newUrl = null;
+
+  const { includeDomain, isEntryEnv } = options || {};
+
+  // 兼容 http(s)://、file://xxx、content://xxx、timapp://xxx 这种类型
+  if (url.indexOf('://') !== -1) {
+    newUrl = url;
+  } else if (includeDomain === undefined || includeDomain === true) {
+    // includeDomain默认为true
+    newUrl = combinePath([location.origin, url]);
+  } else {
+    newUrl = url.indexOf('/') === 0 ? url : `/${url}`;
+  }
+
+  // 兼容调试，ghostlogin
+  if (false && newUrl.indexOf('ghostlogin=') === -1) {
+    const user = true;
+    if (user) {
+      newUrl = addQueryString(newUrl, { ghostlogin: user });
+    }
+  }
+
+  if (params && isObject(params)) {
+    return addQueryString(newUrl, { ...params });
+  }
+
+  return newUrl;
 }
