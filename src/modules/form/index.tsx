@@ -4,16 +4,29 @@ import { Button } from 'tdesign-react';
 import { FormProvider } from '@src/components/forms';
 import { PageBox, PageContent, SectionBox } from '@src/components/page-box';
 
-import { Form, FormItem, Input, InputNumber } from '@src/components/forms';
+import {
+  Form,
+  FormItem,
+  Input,
+  InputNumber,
+  InputText,
+  InputRich,
+} from '@src/components/forms';
 
-import { TestInput, TestInputNumber, TestFrom } from './model';
+import {
+  TestInput,
+  TestInputNumber,
+  TestFromModel,
+  TestTextarea,
+  TestInputRich,
+} from './model';
 
 import * as Css from './index.less';
 
 export const FormTest = () => {
   const [validators] = useState(false);
 
-  const model = useRef(new TestFrom());
+  const model = useRef(new TestFromModel());
 
   return (
     <PageBox>
@@ -35,6 +48,12 @@ export const FormTest = () => {
                   <div className={Css.deliveryFormGroup}>
                     <FormItem meta={TestInput} component={Input} />
                     <FormItem meta={TestInputNumber} component={InputNumber} />
+                    <FormItem meta={TestTextarea} component={InputText} />
+                    <FormItem
+                      meta={TestInputRich}
+                      component={InputRich}
+                      props={{ showParseFile: true }}
+                    />
                   </div>
                 </FormProvider>
 
