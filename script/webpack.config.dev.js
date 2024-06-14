@@ -363,6 +363,18 @@ module.exports = merge(webpackConfigBase, {
     ],
     // rules
   },
+
+  // 开启缓存，增加编译速度
+  // https://webpack.docschina.org/configuration/cache/#cachetype
+  cache: {
+    type: 'filesystem',
+    cacheDirectory: path.resolve(
+      process.cwd(),
+      '.cache/webpack',
+      'src/index.tsx'
+    ),
+    store: 'pack',
+  },
 });
 
 function generateEnvConsts() {

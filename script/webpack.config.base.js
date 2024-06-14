@@ -46,6 +46,7 @@ module.exports = {
       'ts-fns': [path.resolve(process.cwd(), 'src/lib/ts-fns')],
       algeb: [path.resolve(process.cwd(), 'src/lib/algeb')],
     },
+    modules: ['node_modules', path.resolve(process.cwd(), 'node_modules')],
   },
 
   module: {
@@ -60,6 +61,11 @@ module.exports = {
           loader: 'babel-loader',
           // 参数配置
           options: {
+            // 增加一些编译文件目录，加快编译速度
+            // include: [
+            //   path.resolve(process.cwd(), 'src'),
+            //   path.resolve(process.cwd(), 'model'),
+            // ],
             presets: [
               [
                 // 预设polyfill
