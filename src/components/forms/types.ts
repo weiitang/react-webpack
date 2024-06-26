@@ -20,6 +20,13 @@ export enum USER_STATUS {
   OUTSIDE = 5,
 }
 
+export function createEmptyOption(): IOption {
+  return {
+    id: '',
+    name: '',
+  };
+}
+
 export type IObj = {
   [key: string | number]: any;
 };

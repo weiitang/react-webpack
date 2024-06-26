@@ -1,0 +1,138 @@
+@import '@src/styles/atom.less';
+@import '@src/styles/variables.less';
+
+.pageLayout {
+  .flex;
+  .flex-col;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.pageBar {
+  .container;
+  background-color: @color-white1;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 24px auto;
+  margin-top: 16px;
+}
+
+.pageStickyBar {
+  background-color: @color-white1;
+  display: flex;
+  align-items: center;
+  padding: 24px 20px;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  z-index: 51; //  文件上传组件的z-index为50
+}
+
+.tppH2 {
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.catalogTitle {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  margin: 32px 0 16px;
+}
+
+.tppFormLayout {
+  border-top: 1px solid #e7e7e7;
+  display: flex;
+  background: #f7f8fa;
+  
+  .formLeft {
+    width: 154px;
+    box-sizing: border-box;
+    padding: 24px 0;
+    border-right: 1px solid #e7e7e7;
+    background: #f7f8fa;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0px;
+    
+    .formLeftItem {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      line-height: 22px;
+      padding: 10px 20px;
+      color: #333;
+      transition: color .2s;
+
+      &:hover {
+        color: #0052d4;
+      }
+    }
+  }
+
+  .formRight {
+    flex: 1;
+    padding: 24px 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+
+    h2 {
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px;
+      margin: 32px 0 16px;
+    }
+  }
+}
+
+.tppCard {
+  border-radius: 4px;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+
+  .header {
+    height: 54px;
+    background: #f7f8fa;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .headerLeft {
+      display: flex;
+      align-items: center;
+
+      .title {
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+        margin-left: 8px;
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+
+  .body {
+    padding: 24px 20px;
+  }
+
+}
+

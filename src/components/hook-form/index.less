@@ -1,0 +1,114 @@
+@import '@src/styles/variables.less';
+
+.formItem {
+  width: 100%;
+
+  .controls {
+    display: block;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .icon {
+      font-size: 24px;
+
+      &.iconError {
+        color: @color-error8;
+      }
+
+      &.iconWarning {
+        color: @color-warning8;
+      }
+
+      &.iconSuccess {
+        color: @color-success8;
+      }
+    }
+  }
+}
+
+.formItem,
+.formList {
+  vertical-align: top;
+  margin-bottom: 16px;
+
+  &.labelAlignTop {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &.labelAlignLeft {
+    .label {
+      text-align: left;
+    }
+  }
+
+  &.labelAlignRight {
+    .label {
+      text-align: right;
+    }
+  }
+
+  .label {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  .labelRequired::before {
+    display: inline-block;
+    color: @color-error8;
+    margin-right: 2px;
+    font-size: 14px;
+    content: '*';
+  }
+
+  .tips {
+    font-size: 12px;
+    margin: 4px 0;
+
+    &.tipsError {
+      color: @color-error8;
+    }
+
+    &.tipsWarning {
+      color: @color-warning8;
+    }
+
+    &.tipsSuccess {
+      color: @color-success8;
+    }
+  }
+
+  :global {
+    .t-date-picker {
+      width: 100%;
+    }
+  }
+}
+
+:global {
+  .t-select-option > span {
+    flex: 1;
+  }
+}
+
+.formList {
+  .itemWrap {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+  }
+}
+
+// ========== SELECT ==========
+.hookSelect {
+  width: 100%;
+}

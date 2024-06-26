@@ -8,6 +8,7 @@ import { TdCheckBox } from '@src/modules/td/checkBox';
 import { Workflow } from '@src/modules/workflow';
 import Sheet from '@src/modules/sheet/sheet-demo';
 import { FormTest } from '@src/modules/form';
+import { HookFormTestLayout } from '@src/modules/hook-form';
 
 import './../index.less';
 // import * as styles from './../index.less';
@@ -31,6 +32,7 @@ export function App() {
           <Route path="workflow" element={<Workflow />}></Route>
           <Route path="sheet" element={<Sheet />}></Route>
           <Route path="from" element={<FormTest />}></Route>
+          <Route path="hook-form" element={<HookFormTestLayout />}></Route>
         </Routes>
       </BrowserRouter>
     </>

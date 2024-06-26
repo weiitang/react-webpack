@@ -19,10 +19,11 @@ export default () => {
   };
 
   return (
-    <>
+    <div className={css.navBox}>
       <HeadMenu
         theme="dark"
         expandType="popup"
+        className={css.tHeadMenu}
         // logo={
         //   <Badge count={2}>
         //     <a href="/" className={css.navLogo}>
@@ -33,7 +34,7 @@ export default () => {
         onChange={(value) => switchMenu(value as string)}
         value={'null'}
       >
-        <SubMenu title="Redux">
+        <SubMenu title="Test1">
           <MenuItem value="test">TestFn</MenuItem>
           <MenuItem value="test1">ClassFn</MenuItem>
           <MenuItem value="input">InputFn</MenuItem>
@@ -42,6 +43,17 @@ export default () => {
           <MenuItem value="from">From</MenuItem>
         </SubMenu>
       </HeadMenu>
-    </>
+      <HeadMenu
+        theme="dark"
+        expandType="popup"
+        onChange={(value) => switchMenu(value as string)}
+        value={'null'}
+        className={css.tHeadMenu}
+      >
+        <SubMenu title="Test2">
+          <MenuItem value="hook-form">Hook-Form</MenuItem>
+        </SubMenu>
+      </HeadMenu>
+    </div>
   );
 };
