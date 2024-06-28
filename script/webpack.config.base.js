@@ -95,6 +95,11 @@ module.exports = {
           },
         },
       },
+      // https://webpack.docschina.org/guides/asset-modules/
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        type: 'asset/resource',
+      },
     ],
   },
 };
