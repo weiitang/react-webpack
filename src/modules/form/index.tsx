@@ -11,6 +11,12 @@ import {
   InputNumber,
   InputText,
   InputRich,
+  Radios,
+  Toggle,
+  Checkboxes,
+  SelectDate,
+  SelectDateRange,
+  SelectStar,
 } from '@src/components/forms';
 
 import {
@@ -19,6 +25,12 @@ import {
   TestFromModel,
   TestTextarea,
   TestInputRich,
+  IsTimeMeta,
+  IsPrivaryMeta,
+  CheckMeta,
+  DateMeta,
+  DateRangeMeta,
+  RatingMeta,
 } from './model';
 
 import * as Css from './index.less';
@@ -49,6 +61,16 @@ export const FormTest = () => {
                     <FormItem meta={TestInput} component={Input} />
                     <FormItem meta={TestInputNumber} component={InputNumber} />
                     <FormItem meta={TestTextarea} component={InputText} />
+                    <FormItem meta={IsTimeMeta} component={Radios} />
+                    <FormItem meta={IsPrivaryMeta} component={Toggle} />
+                    <FormItem meta={CheckMeta} component={Checkboxes} />
+                    <FormItem meta={DateMeta} component={SelectDate} />
+                    <FormItem
+                      meta={DateRangeMeta}
+                      component={SelectDateRange}
+                      props={{ format: 'YYYY/MM/DD' }}
+                    />
+                    <FormItem meta={RatingMeta} component={SelectStar} />
                     <FormItem
                       meta={TestInputRich}
                       component={InputRich}

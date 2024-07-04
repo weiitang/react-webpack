@@ -65,7 +65,7 @@ export function HookFormTestLayout() {
           marginTop: '10px',
         }}
       >
-        <TestH2>{'新建签署'}</TestH2>
+        <TestH2>{'新建'}</TestH2>
         <Space size={8}>
           <Button theme="default">{'取消'}</Button>
           <Button theme="default">{'保存'}</Button>

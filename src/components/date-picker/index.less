@@ -1,0 +1,41 @@
+@import '@src/styles/variables.less';
+
+.date-picker {
+  width: 100%; 
+  min-width: 217px;
+
+  .t-input__wrap .t-input__inner {
+    cursor: pointer;
+  }
+  
+  .t-popup__reference {
+    width: 100%
+  }
+
+  &-popup {
+    padding: 10px 20px;
+  
+    .item {
+      display: flex;
+      align-items: center;
+      padding-bottom: 10px;
+  
+      label {
+        padding-right: 15px;
+      }
+
+      > *:nth-child(2) {
+        flex: 1;
+      }
+    }
+  }
+
+  .t-input.t-input--suffix > .t-input__suffix-icon {
+    padding-left: 0;
+  }
+
+  .clearIcon {
+    color: @color-font-gray3;
+    cursor: pointer;
+  }
+}

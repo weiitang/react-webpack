@@ -1,0 +1,35 @@
+@import '@src/styles/fonts.less';
+@import '@src/styles/variables.less';
+@import '@src/styles/atom.less';
+
+.starWrap {
+  display: inline-flex;
+  font-size: @font-size4;
+  color: @color-font-gray4;
+
+  .star {
+    .flex-c;
+  }
+
+  &.edit {
+    .star {
+      cursor: pointer;
+    }
+  }
+
+  &.small {
+    font-size: @font-size5;
+  }
+
+  &.large {
+    font-size: @font-size3;
+  }
+
+  &.xlarge {
+    font-size: @font-size2;
+  }
+}
+
+.active {
+  color: @color-warning4;
+}

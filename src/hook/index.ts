@@ -13,3 +13,5 @@ export { useUpdateEffect } from './use-update-effect';
 export { usePrevious } from './use-previous';
 export { useRequest } from './use-request';
 export { useShallowLatest } from './use-shallow-latest';
+export { useIsMount } from './use-is-mount';
+export { useClickAway } from './use-click-away';

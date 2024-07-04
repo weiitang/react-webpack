@@ -1,7 +1,7 @@
 export { HookForm } from './hook-form';
 export { HookFormItem } from './hook-form-item';
-// export { HookFormList } from './hook-form-list';
-// export { HookFormListItem } from './hook-form-list-item';
+export { HookFormList } from './hook-form-list';
+export { HookFormListItem } from './hook-form-list-item';
 export { HookFormField } from './hook-form-field';
 export { HookInput } from './hook-input';
 export { HookTextarea } from './hook-textarea';

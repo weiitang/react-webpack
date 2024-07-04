@@ -8,9 +8,11 @@ import {
   HookDatePicker,
   HookDateRangePicker,
   HookSearchInput,
+  HookFormList,
 } from '@src/components/hook-form';
 import { type FormItemProps } from '@src/components/hook-form/hook-form-item';
 import { TestFormLayout } from '@src/modules/hook-form/conponents';
+import { Button } from 'tdesign-react';
 
 export const testOption1 = [
   { name: 'RMB', id: 'cny' },
@@ -123,6 +125,62 @@ export function HookFormTest(props) {
         <div style={{ height: 500 }}></div>
         <TestFormLayout.Catalog>Test1</TestFormLayout.Catalog>
         <div style={{ height: 1000 }}></div>
+        <TestFormLayout.Catalog>{'多行表单'}</TestFormLayout.Catalog>
+        <HookFormList name="investorCorporations" label={'第一行'}>
+          {({ fields, remove, append }) =>
+            fields.map((field, index) => (
+              <div key={field.id} style={{ display: 'flex', gap: 8 }}>
+                <HookFormList.Item
+                  index={index}
+                  name={`investorCorporations.${index}.corporationId`}
+                  render={(formProps) => (
+                    <HookSelect
+                      {...formProps}
+                      valueType="object"
+                      filterable
+                      onSearch={() => {
+                        return new Promise((req) => {
+                          req([
+                            {
+                              id: 'A170BD3A74274F3292FE8D4EFC4C6F1A',
+                              name: 'CBFT-ABA和IBAN-主体',
+                            },
+                            {
+                              id: 'E3CD1AF9E8D44FDFBAE8E2DFBC5F5885',
+                              name: 'harold',
+                            },
+                          ]);
+                        });
+                      }}
+                    />
+                  )}
+                ></HookFormList.Item>
+                <HookFormList.Item
+                  index={index}
+                  name={`investorCorporations.${index}.businessGroup`}
+                  render={(formProps) => (
+                    <HookSelect {...formProps} options={testOption1} multiple />
+                  )}
+                ></HookFormList.Item>
+                <Button
+                  theme="default"
+                  onClick={() =>
+                    append({
+                      corporationId: '',
+                      businessGroup: '',
+                      sealType: [],
+                    })
+                  }
+                >
+                  +
+                </Button>
+                <Button theme="default" onClick={() => remove(index)}>
+                  -
+                </Button>
+              </div>
+            ))
+          }
+        </HookFormList>
       </HookForm>
     </TestFormLayout>
   );
