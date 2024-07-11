@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Button } from 'tdesign-react';
 import { FormProvider } from '@src/components/forms';
 import { PageBox, PageContent, SectionBox } from '@src/components/page-box';
+import { AddIcon, AppColorIcon } from 'kz-icon'; // kz-icon的package.json中的main和modules是引入入口
 
 import {
   Form,
@@ -87,6 +88,8 @@ export const FormTest = () => {
                     <Button theme="default">取消</Button>
                   </div>
                 ) : null}
+                <AddIcon />
+                <AppColorIcon />
               </Form>
             </div>
           </>
