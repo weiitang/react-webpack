@@ -10,6 +10,8 @@ import Sheet from '@src/modules/sheet/sheet-demo';
 import { FormTest } from '@src/modules/form';
 import { HookFormTestLayout } from '@src/modules/hook-form';
 
+import { RootOutletNavigator } from '@src/modules/navigator/index.module';
+
 import './../index.less';
 // import * as styles from './../index.less';
 // import router from './../router';
@@ -33,7 +35,14 @@ export function App() {
           <Route path="sheet" element={<Sheet />}></Route>
           <Route path="from" element={<FormTest />}></Route>
           <Route path="hook-form" element={<HookFormTestLayout />}></Route>
+          {/* react-router-dom 里的path会注册到全局 仅仅是path */}
+          <Route
+            path="navigator-tests"
+            element={<RootOutletNavigator />}
+          ></Route>
         </Routes>
+        {/* 实现两种路由跳转共存 */}
+        {/* <RootOutletNavigator></RootOutletNavigator> */}
       </BrowserRouter>
     </>
   );

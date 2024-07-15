@@ -17,3 +17,7 @@ export type IOption = {
 };
 
 export type IOptions = OptionsItem[];
+
+export type IObj = {
+  [key: string | number]: any;
+};

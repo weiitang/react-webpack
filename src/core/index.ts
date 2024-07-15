@@ -6,6 +6,37 @@ export {
   useModelWatch,
 } from './model';
 
+export {
+  createBootstrap,
+  createAsyncComponent,
+  importModule,
+  useModuleContext,
+  useModuleNavigator,
+  useModuleParams,
+} from './module';
+
+export {
+  Router,
+  useHistoryListener,
+  useLocation,
+  useRouteNavigate,
+  useRouteLocation,
+  useRouteMatch,
+  useRouteParams,
+  Link,
+  RouterRootProvider,
+  useRoutePrefetch,
+  createRouteComponent,
+  useRouteState,
+  Route,
+  usePermanentNavigate,
+  usePermanentLink,
+  useHistory,
+  useRouteBack,
+} from './router/router';
+
+export { History } from './router/history';
+
 export { isShallowEqual, noop } from './utils/utils';
 
 export type { ReflectMeta } from 'tyshemo';
