@@ -26,6 +26,9 @@
     // 别名
     "baseUrl": ".",
     "paths": {
+      "@/*": [
+        "./*"
+      ],
       "@src/*": [
         "./src/*"
       ],
@@ -89,6 +92,6 @@
   //     ]
   //   }
   // },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "i18n"],
   "exclude": ["node_modules", "src/modules/workflow/custom/**", "src/hook/use-request/__test__", "static/**", "src/lib/luckysheet-excel"]
 }
