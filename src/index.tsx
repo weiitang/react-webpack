@@ -6,6 +6,12 @@ import ReactDom from 'react-dom/client';
 
 import { store } from '../model/store';
 
+import { ConfigProvider } from 'tdesign-react';
+// 国际化
+import { initI18n, tdConfig } from '@src/i18n';
+import { config } from '@src/i18n/config';
+initI18n(config);
+
 // react-router
 import { App } from './modules/App';
 
@@ -33,17 +39,19 @@ document.body.appendChild(root);
 const app = ReactDom.createRoot(root);
 
 app.render(
-  <Provider store={store}>
-    <App></App>
-    {/* 本身导出Outlet报错，没有createBootstrap的history上下文 */}
-    {/* <OutletTest></OutletTest> */}
-    {/* 导出一个有Outlet上下文的history */}
-    {/* <RootOutlet></RootOutlet> */}
-    {/* RootOutletNavigator */}
-    {/* <RootOutletNavigator></RootOutletNavigator> */}
-    {/* 增加一个外壳的并有Outlet上下文的history导出Outlet */}
-    {/* <RootOutletWarp></RootOutletWarp> */}
-  </Provider>
+  <ConfigProvider globalConfig={tdConfig}>
+    <Provider store={store}>
+      <App></App>
+      {/* 本身导出Outlet报错，没有createBootstrap的history上下文 */}
+      {/* <OutletTest></OutletTest> */}
+      {/* 导出一个有Outlet上下文的history */}
+      {/* <RootOutlet></RootOutlet> */}
+      {/* RootOutletNavigator */}
+      {/* <RootOutletNavigator></RootOutletNavigator> */}
+      {/* 增加一个外壳的并有Outlet上下文的history导出Outlet */}
+      {/* <RootOutletWarp></RootOutletWarp> */}
+    </Provider>
+  </ConfigProvider>
 );
 
 // ReactDOM.render(<App/>, document.querySelector('#root'));

@@ -11,6 +11,30 @@ const config = {
   // 转换排除的路径 https://github.com/isaacs/minimatch#usage
   excludePath: ['**/_i18n', '**/*.xlsx',],
   fileType: ['.js', '.jsx', '.ts', '.tsx', '.html'],
+	// 获取模块名方法，也就是i18n中namespace的值，入参为filepath，默认为filepath的basename
+  getModuleName: (filePath) => {
+		console.log('====', filePath);
+    let result = "notfound";
+    if (filePath.includes("src/modules/")) {
+			const m = filePath.split("src/modules/")[1].split("/")[0]
+			// 排除直接是文件
+			if (m.includes('.')) return result;
+      result = m;
+    }
+    if (filePath.includes("src/apps/")) {
+      result = filePath.split("src/apps/")[1].split("/")[0];
+    }
+    if (filePath.includes("src/components/")) {
+      result = "components";
+    }
+    if (filePath.includes("src/libs/")) {
+      result = "libs";
+    }
+    if (filePath.includes("packages/shared/")) {
+      result = "shared"
+    }
+    return result;
+  },
   i18nStorePath: path.resolve(dirname, './src/i18n-store'),
   i18nConfigPath: path.resolve(dirname, './src/i18n/config'),
 	i18nDataSource: 'json',
@@ -44,17 +68,17 @@ const config = {
 
     // 解析命令行中入口文件
     const argvs = process.argv.splice(2)
-		console.log('-------', argvs);
     // 优先使用命令行中的入口文件 没有就取
-    const entryFile = argvs?.[0]?.split('entryFile=')?.[1] || config?.entryFile
-
+    const entryFile = argvs?.[0]?.split('entryFile=')?.[1] || config?.entryFile || './src/index.tsx'
+		
     if (entryFile) {
-      const pathArray = entryFile?.split('/')
-      const configJsName = pathArray?.[pathArray.length - 2]
-
+			// 下一个文件夹的路径
+      // const pathArray = entryFile?.split('/')
+      // const configJsName = pathArray?.[pathArray.length - 1]
+			
       // 遍历文件夹下json，自动再生成index.js
-      const configFiles = globby.sync(`${config.i18nConfigPath}/${configJsName}/*.json`, {
-        ignore: ["**/index.js"],
+      const configFiles = globby.sync(`${config.i18nConfigPath}/*.json`, {
+				ignore: ["**/index.js"],
         absolute: true,
       });
       
@@ -69,8 +93,10 @@ const config = {
         }
         return path.module === item
       }))
+			console.log('-------', argvs,configFiles, configList,importList);
+
       fs.writeFileSync(
-        `${config.i18nConfigPath}/${configJsName}/index.js`,
+        `${config.i18nConfigPath}/index.js`,
         `${importList
       .map(
         (fileName) => `import ${toCamelCase(fileName)} from './${fileName}.json';`
@@ -89,7 +115,7 @@ export const config = [${importList
     // 执行一个格式化
     const commandText = `npx eslint ${config.includePath.join(
       " "
-    )} ./src/i18n/config/**.js --ext .js,.jsx,.ts,.tsx --fix --no-error-on-unmatched-pattern --ignore-path ../../.eslintignore`
+    )} ./src/i18n/config/**.js --ext .js,.jsx,.ts,.tsx --fix --no-error-on-unmatched-pattern --ignore-path ./.eslintignore`
     console.log('执行格式化: ', commandText)
     shelljs.exec(commandText, { silent: false, async: false });
   },

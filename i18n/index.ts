@@ -34,4 +34,7 @@ export enum Language {
   Zh = 'zh',
   En = 'en',
 }
+
+export type LanguageType = 'zh' | 'en';
+
 export { $i18next };
