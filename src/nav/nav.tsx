@@ -52,6 +52,7 @@ export default () => {
       >
         <SubMenu title="Test2">
           <MenuItem value="hook-form">Hook-Form</MenuItem>
+          <MenuItem value="i18n">I18N</MenuItem>
         </SubMenu>
       </HeadMenu>
     </div>

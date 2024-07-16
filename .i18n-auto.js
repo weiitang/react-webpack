@@ -7,7 +7,7 @@ const shelljs = require("shelljs");
 const config = {
 	rootPath: dirname,
   // 需要遍历的目录，rootPath的相对路径，minimatch语法：https://github.com/isaacs/minimatch#usage
-	includePath: ['./src/modules/**'],
+	includePath: ['./src/modules/i18n-test/**'],
   // 转换排除的路径 https://github.com/isaacs/minimatch#usage
   excludePath: ['**/_i18n', '**/*.xlsx',],
   fileType: ['.js', '.jsx', '.ts', '.tsx', '.html'],
@@ -51,7 +51,7 @@ const config = {
   // 分隔符 转换后i18n key的分割符 如 module:key:中文
 	separator: ':',
 	// 日志路径配置
-	logDir: `${dirname}/logs`,
+	logDir: null,
   autoCompleteImport: true,
 	// 只输出国际化脚本覆盖到的词条
   outputOnlyUsed: true,
