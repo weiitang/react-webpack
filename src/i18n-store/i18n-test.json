@@ -1,0 +1,50 @@
+[
+  {
+    "module": "i18n-test",
+    "id": "4f401e68",
+    "zh": "这是",
+    "zh_plural": "",
+    "en": "这是",
+    "en_plural": "",
+    "status": "NO_CHANGE",
+    "newId": "",
+    "isChanged": true,
+    "isRecord": true
+  },
+  {
+    "module": "i18n-test",
+    "id": "65c4865e",
+    "zh": "国际化变量1",
+    "zh_plural": "",
+    "en": "国际化变量1",
+    "en_plural": "",
+    "status": "NO_CHANGE",
+    "newId": "",
+    "isChanged": true,
+    "isRecord": true
+  },
+  {
+    "module": "i18n-test",
+    "id": "a3907dfc",
+    "zh": "国际化变量2",
+    "zh_plural": "",
+    "en": "国际化变量2",
+    "en_plural": "",
+    "status": "NO_CHANGE",
+    "newId": "",
+    "isChanged": true,
+    "isRecord": true
+  },
+  {
+    "module": "i18n-test",
+    "id": "d025e68f",
+    "zh": "这是{{_0}}{{_1}}个",
+    "zh_plural": "",
+    "en": "这是{{_0}}{{_1}}个",
+    "en_plural": "",
+    "status": "NO_CHANGE",
+    "newId": "",
+    "isChanged": true,
+    "isRecord": true
+  }
+]
