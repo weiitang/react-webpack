@@ -88,3 +88,5 @@ packages/app/ios/Pods/
 
 # ========= shared =========
 packages/shared/logs/
+
+logs

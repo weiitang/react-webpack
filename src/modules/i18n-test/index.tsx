@@ -23,6 +23,7 @@ export function Itest() {
       <div>
         {$i18next.t('i18n-test:d025e68f:这是{{_0}}{{_1}}个', { _0: 0, _1: 1 })}
       </div>
+      <div>{$i18next.t('i18n-test:21f41f1f:测试包kz-i18n-command')}</div>
     </>
   );
 }

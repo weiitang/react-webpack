@@ -1,6 +1,18 @@
 [
   {
     "module": "i18n-test",
+    "id": "21f41f1f",
+    "zh": "测试包kz-i18n-command",
+    "zh_plural": "",
+    "en": "测试包kz-i18n-command",
+    "en_plural": "",
+    "status": "KEY_ADD",
+    "newId": "",
+    "isChanged": true,
+    "isRecord": true
+  },
+  {
+    "module": "i18n-test",
     "id": "4f401e68",
     "zh": "这是",
     "zh_plural": "",
